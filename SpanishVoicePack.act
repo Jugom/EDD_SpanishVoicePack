@@ -2,10 +2,10 @@
 
 ENABLED True
 
-INSTALL LongDescription="Esta es la versión 21 del paquete de voz para EDD, para la versión 17.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
+INSTALL LongDescription="Esta es la versión 22 del paquete de voz para EDD, para la versión 17.2+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
 INSTALL ShortDescription="Archivo de voz para ED"
-INSTALL Version=21.1.0.0
-INSTALL MinEDVersion=17.0.100.0
+INSTALL Version=22.0.1.0
+INSTALL MinEDVersion=17.2.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=SpanishVoicePackV1
 INSTALL DisableOther2=SpanishVoicePackV2
@@ -27,6 +27,7 @@ INSTALL DisableOther17=SpanishVoicePackV17
 INSTALL DisableOther18=SpanishVoicePackV18
 INSTALL DisableOther19=SpanishVoicePackV19
 INSTALL DisableOther20=SpanishVoicePackV20
+INSTALL DisableOther21=SpanishVoicePackV21
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -34,15 +35,15 @@ INSTALL OtherFile3=npcpostfix.mp3;Sounds
 
 GROUP Combat
 
-EVENT Bounty, GenericResponse, "", Condition AlwaysFalse
+EVENT Bounty, GenericResponse, "", Condition AlwaysTrue
 EVENT BuyAmmo, GenericResponse, "", Condition AlwaysTrue
 EVENT CapShipBond, GenericResponse, "", Condition AlwaysTrue
 EVENT CockpitBreached, GenericResponse, Volume=100, Condition AlwaysTrue
 EVENT CommitCrime, CommitCrime, "", Condition AlwaysTrue
-EVENT DockFighter, GenericResponse, "", Condition AlwaysFalse
+EVENT DockFighter, GenericResponse, "", Condition AlwaysTrue
 EVENT EscapeInterdiction, GenericResponse, "", Condition AlwaysTrue
 EVENT FactionKillBond, GenericResponse, "", Condition AlwaysTrue
-EVENT FighterDestroyed, GenericResponse, "", Condition AlwaysFalse
+EVENT FighterDestroyed, GenericResponse, "", Condition AlwaysTrue
 EVENT FighterRebuilt, GenericResponse, "", Condition AlwaysTrue
 EVENT Interdicted, GenericResponse, "", Condition AlwaysTrue
 EVENT Interdiction, Interdiction, "", Condition AlwaysTrue
@@ -57,7 +58,7 @@ EVENT ShipTargeted, ShipTargeted, "", Condition AlwaysTrue
 
 GROUP CommunityGoals
 
-EVENT CollectCargo, GenericResponse, "", Condition AlwaysFalse
+EVENT CollectCargo, GenericResponse, "", Condition AlwaysTrue
 EVENT CommunityGoal, CommunityGoal, "", Condition AlwaysTrue
 EVENT CommunityGoalDiscard, GenericResponse, "", Condition AlwaysTrue
 EVENT CommunityGoalJoin, GenericResponse, "", Condition AlwaysTrue
@@ -69,14 +70,14 @@ EVENT ChangeCrewRole, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewAssign, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewFire, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewHire, GenericResponse, "", Condition AlwaysTrue
-EVENT CrewLaunchFighter, GenericResponse, "", Condition AlwaysFalse
+EVENT CrewLaunchFighter, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewMemberJoins, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewMemberRoleChange, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewMemberQuits, GenericResponse, "", Condition AlwaysTrue
 EVENT EndCrewSession, GenericResponse, "", Condition AlwaysTrue
 EVENT JoinACrew, GenericResponse, "", Condition AlwaysTrue
 EVENT KickCrewMember, GenericResponse, "", Condition AlwaysTrue
-EVENT NpcCrewPaidWage, GenericResponse, "", Condition AlwaysFalse
+EVENT NpcCrewPaidWage, GenericResponse, "", Condition AlwaysTrue
 EVENT NpcCrewRank, GenericResponse, "", Condition AlwaysTrue
 EVENT QuitACrew, GenericResponse, "", Condition AlwaysTrue
 
@@ -114,17 +115,17 @@ EVENT DockingCancelled, DockingCancelled, "", Condition AlwaysTrue
 EVENT DockingDenied, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingGranted, GenericDelayedResponse, "Delay=15,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
 EVENT onTimer, DockingGrantedResponse, "", TimerName Contains VoicePackDockingGrantedDelay
-EVENT DockingRequested, GenericResponse, "", Condition AlwaysFalse
+EVENT DockingRequested, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingTimeout, GenericResponse, "", Condition AlwaysTrue
 EVENT DockSRV, GenericResponse, "", Condition AlwaysTrue
 EVENT FSDJump, FSDResponse, QueueLimit=5000, Condition AlwaysTrue
-EVENT FuelScoop, GenericResponse, QueueLimit=3000, Condition AlwaysFalse
+EVENT FuelScoop, GenericResponse, QueueLimit=3000, Condition AlwaysTrue
 EVENT JetConeBoost, GenericResponse, "", Condition AlwaysTrue
 EVENT JetConeDamage, GenericResponse, "", Condition AlwaysTrue
 EVENT LeaveBody, GenericResponse, QueueLimit=5000, Condition AlwaysTrue
 EVENT LaunchSRV, GenericResponse, "", Condition AlwaysTrue
 EVENT Liftoff, GenericResponse, "", Condition AlwaysTrue
-EVENT StartJump, GenericResponse, Priority=HighClear, Condition AlwaysFalse
+EVENT StartJump, GenericResponse, Priority=HighClear, Condition AlwaysTrue
 EVENT SupercruiseEntry, GenericResponse, "", Condition AlwaysTrue
 EVENT SupercruiseExit, SupercruiseExit, "", Condition AlwaysTrue
 EVENT Touchdown, GenericResponse, "", Condition AlwaysTrue
@@ -133,16 +134,16 @@ EVENT USSDrop, GenericResponse, "", Condition AlwaysTrue
 
 GROUP Missions
 
-EVENT MissionAbandoned, GenericResponse, "", Condition AlwaysFalse
-EVENT MissionAccepted, GenericResponse, "", Condition AlwaysFalse
-EVENT MissionCompleted, GenericResponse, "", Condition AlwaysFalse
+EVENT MissionAbandoned, GenericResponse, "", Condition AlwaysTrue
+EVENT MissionAccepted, GenericResponse, "", Condition AlwaysTrue
+EVENT MissionCompleted, GenericResponse, "", Condition AlwaysTrue
 EVENT MissionFailed, GenericResponse, "", Condition AlwaysTrue
 EVENT MissionRedirected, GenericResponse, "", Condition AlwaysTrue
 
 GROUP Mining
 
 EVENT AsteroidCracked, GenericResponse, "", Condition AlwaysTrue
-EVENT MiningRefined, GenericResponse, "", Condition AlwaysFalse
+EVENT MiningRefined, GenericResponse, "", Condition AlwaysTrue
 
 GROUP Materials
 
@@ -154,18 +155,18 @@ EVENT MaterialTrade, GenericResponse, "", Condition AlwaysTrue
 GROUP Misc
 
 EVENT ClearSavedGame, GenericResponse, "", Condition AlwaysTrue
-EVENT Died, GenericResponse, "", Condition AlwaysFalse
+EVENT Died, GenericResponse, "", Condition AlwaysTrue
 EVENT DatalinkScan, GenericResponse, "", Condition AlwaysTrue
 EVENT DatalinkVoucher, GenericResponse, "", Condition AlwaysTrue
 EVENT DataScanned, GenericResponse, "", Condition AlwaysTrue
 EVENT Friends, Friends, "", Condition AlwaysTrue
 EVENT Promotion, GenericResponse, "", Condition AlwaysTrue
 EVENT ReceiveText, ReceiveText, "", Condition AlwaysTrue
-EVENT Resurrect, GenericResponse, "", Condition AlwaysFalse
+EVENT Resurrect, GenericResponse, "", Condition AlwaysTrue
 EVENT ScientificResearch, GenericResponse, "", Condition AlwaysTrue
 EVENT Screenshot, GenericResponse, "", Condition AlwaysTrue
 EVENT SearchAndRescue, GenericResponse, "", Condition AlwaysTrue
-EVENT SendText, GenericResponse, "", Condition AlwaysFalse
+EVENT SendText, GenericResponse, "", Condition AlwaysTrue
 
 GROUP Powerplay
 
@@ -184,10 +185,10 @@ GROUP Ship/SRV
 EVENT AfmuRepairs, GenericResponse, "", Condition AlwaysTrue
 EVENT BuyDrones, GenericResponse, "", Condition AlwaysTrue
 EVENT FetchRemoteModule, GenericResponse, "", Condition AlwaysTrue
-EVENT HeatDamage, GenericResponse, "", Condition AlwaysFalse
-EVENT HeatWarning, GenericResponse, "", Condition AlwaysFalse
+EVENT HeatDamage, GenericResponse, "", Condition AlwaysTrue
+EVENT HeatWarning, GenericResponse, "", Condition AlwaysTrue
 EVENT HullDamage, HullDamage, "", Condition AlwaysTrue
-EVENT LaunchDrone, GenericResponse, "", Condition AlwaysFalse
+EVENT LaunchDrone, GenericResponse, "", Condition AlwaysTrue
 EVENT MassModuleStore, GenericResponse, "", Condition AlwaysTrue
 EVENT ModuleBuy, GenericResponse, "", Condition AlwaysTrue
 EVENT ModuleRetrieve, GenericResponse, "", Condition AlwaysTrue
@@ -289,19 +290,19 @@ EVENT onKeyPress, SayPhoneme, "", KeyPress $== Alt+F12
 GROUP UIEvents
 
 EVENT UILights, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UIFireGroup, GenericResponseUI, QueueLimit=200, Condition AlwaysFalse
+EVENT UIFireGroup, GenericResponseUI, QueueLimit=200, EventClass_EventRefresh IsFalse
 EVENT UIShieldsUp, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UILandingGear, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UILandingGear, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UIHardpointsDeployed, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UIInWing, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UICargoScoopDeployed, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
-EVENT UISilentRunning, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UICargoScoopDeployed, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
+EVENT UISilentRunning, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UIScoopingFuel, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UISrvHandbrake, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UISrvHandbrake, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UISrvTurret, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UISrvUnderShip, GenericResponseUI, "QueueLimit=2000,MaxRepeat=20000", EventClass_EventRefresh IsFalse
 EVENT UIFsdMassLocked, GenericResponseUI, "QueueLimit=2000,MaxRepeat=20000", EventClass_EventRefresh IsFalse
-EVENT UIFsdCharging, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UIFsdCharging, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UIFsdCooldown, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UILowFuel, GenericResponseUI, "", EventClass_EventRefresh IsFalse
 EVENT UIOverHeating, GenericResponseUI, QueueLimit=5000, EventClass_EventRefresh IsFalse
@@ -392,8 +393,8 @@ Static say_CargoDepot $+= "%(EventClass_ItemsToGo) elementos restantes, %round(E
 Static say_CapShipBond $= Recompensa por la nave capital de la facción %rv(EventClass_AwardingFaction_Localised,say_ss) contra %rv(EventClass_VictimFaction_Localised,say_ss), %hnum(EventClass_Reward,HNumList) créditos
 Static say_CockpitBreached $= Alerta, Alerta! Brecha en la cabina. Diríjase a una estación de inmediato<;>Emergencia, pérdida de la cúpula de la cabina, abortar<;>Emergencia, Rotura de la cabina de mando
 Static say_CollectCargo $= "{{{Recogido<;>Recolectado<;>Capturado}}} %(EventClass_FriendlyType) %iftrue(EventClass_Stolen,\", Advertencia comandante, esta carga es robada\")"
-Static say_CommitCrimeFine $= Multa interpuesta Comandante, %replacevar(EventClass_FDCrimeType,"say_crime"),%ifnotempty(EventClass_Victim,' en %(EventClass_VictimLocalised), ')contra la facción %rv(EventClass_Faction,say_ss), cuesta %hnum(EventClass_Fine,HNumList) créditos
-Static say_CommitCrimeBounty $= Crimen cometido Comandante, %replacevar(EventClass_FDCrimeType,"say_crime"),%ifnotempty(EventClass_Victim,' en %(EventClass_VictimLocalised), ')contra la facción %rv(EventClass_Faction,say_ss), la recompensa por ti es de %hnum(EventClass_Bounty,HNumList) créditos
+Static say_CommitCrimeFine $= Multa interpuesta Comandante, %replacevar(EventClass_FDCrimeType,"say_crime"), %ifnotempty(EventClass_Victim,' en %(EventClass_VictimLocalised), ')contra la facción %rv(EventClass_Faction,say_ss), cuesta %hnum(EventClass_Fine,HNumList) créditos
+Static say_CommitCrimeBounty $= Crimen cometido Comandante, %replacevar(EventClass_FDCrimeType,"say_crime"), %ifnotempty(EventClass_Victim,' en %(EventClass_VictimLocalised), ')contra la facción %rv(EventClass_Faction,say_ss), la recompensa por ti es de %hnum(EventClass_Bounty,HNumList) créditos
 Static say_CommunityGoal $= Los logros de la comunidad son %(EventClass_CommunityGoalList)
 Static say_CommunityGoalJoin $= Uniéndose a logro de la comunidad %sc(EventClass_Name), situado en el sistema %star(EventClass_System,say_ss)
 Static say_CommunityGoalReward $= meta de la comunidad %sc(EventClass_Name), situado en el sistema %star(EventClass_System,say_ss), le recompensó con %hnum(EventClass_Reward,HNumList) créditos
@@ -434,8 +435,8 @@ Static say_Died $= Aquí yacen los huesos del comandante %(Commander), muerto y 
 Static say_Docked $= "{{{Estacionado en %(EventClass_StationName), %ifnotempty(EventClass_StationType,\"%(EventClass_StationType) type\")}}}{{{. }}}{{{Esta es una estación con una economía basada en %(EventClass_Economy_Localised) <;>La economía es %(EventClass_Economy_Localised)}}}"
 Static say_DockSRV $= Vehículo de Reconocimiento de Superficie a bordo Comandante<;>embarcado en la nave nodriza Comandante, prepárese para las operaciones de vuelo<;>Entrando en la nave nodriza
 
-Static dockingdeniedlist = No Space;Too Large;Hostile;Offences;Distance;Active Fighter;No Reason
-Static dockingresponse = "No hay lugar comandante;La nave es demasiado grande comandante;somos hostiles con esta facción comandante; Tenemos cuentas pendientes con esta facción comandante;Estamos aún muy lejos de la estación comandante; Hay un caza desplegado comandante;no han dado una razón"
+Static dockingdeniedlist = No Space;Too Large;Hostile;Offences;Distance;Active Fighter;No Reason;Restricted Access
+Static dockingresponse = "No hay lugar comandante;La nave es demasiado grande comandante;somos hostiles con esta facción comandante; Tenemos cuentas pendientes con esta facción comandante;Estamos aún muy lejos de la estación comandante; Hay un caza desplegado comandante;no han dado una razón;Accesso Restringido"
 Static say_DockingDenied $= %(EventClass_StationName) ha denegado la solicitud. %wordof(dockingresponse,%wordfind(dockingdeniedlist,EventClass_Reason))
 
 Static say_DockingGranted $= "Comandante, confirmado estacionamiento en la plataforma: %(EventClass_LandingPad)<;>Confirmada la plataforma %(EventClass_LandingPad) para aterrizar<;> La plataforma %(EventClass_LandingPad) le espera comandante"
@@ -467,7 +468,7 @@ Static say_DisbandedSquadron $= Flota %(EventClass_Name) disuelta Comandante
 
 Static say_DropshipDeploy $= {{{Prepárese comandante, desplegando<;>Prepárese comandante, desplegando en un momento}}}
 
-Static say_Embark $= {{{Abordando<;>Bienvenido a bordo comandante, abordando}}} %iftrue(EventClass_Taxi,'Taxi Apex','%iftrue(EventClass_SRV,"VRS","Nave")')
+Static say_Embark $= {{{Abordando<;>Bienvenido comandante, abordando}}} %iftrue(EventClass_Taxi,'Taxi Apex','%iftrue(EventClass_SRV,"VRS","Nave")')
 
 Static say_edsmscannoinfo $= Ninguna otra información sobre el sistema<;>La computadora de la nave no tiene otra información sobre este sistema<;>La búsqueda en la WikiPedia ha fallado! No puedo encontrar nada en este sistema<;>No he encontrado información sobre este sistema ni en google, comandante<;>Información del sistema no disponible
 Static say_edsmscanstarsplanets $= "Total de %(totalstars) %ifne(totalstars,\"1\",\"estrellas\",\"estrella\") y %(totalplanets) %ifne(totalplanets,\"1\",\"planetas\",\"planeta\") en este sistema"
@@ -580,7 +581,7 @@ Static say_MaterialCollected $= Recolectados %(EventClass_Count) elementos de ma
 Static say_MaterialDiscarded $= Material desechado: %(EventClass_FriendlyName), %(EventClass_Count) elementos
 Static say_MaterialDiscovered $= Descubierto nuevo material: %(EventClass_FriendlyName)
 Static say_MaterialTrade $= Intercambiado %(EventClass_Paid_Quantity) de %(EventClass_Paid_Material_Localised) para %(EventClass_Received_Quantity) de %(EventClass_Received_Material_Localised)
-Static say_MarketBuy $= Comprado %(EventClass_Count) unidades de %(EventClass_Type_Localised), El precio de compra es %hnum(EventClass_BuyPrice,HNumList) créditos %ifgt(EventClass_Count,1,', El coste total es de %hnum(EventClass_TotalCost,HNumList) créditos
+Static say_MarketBuy $= Comprado %(EventClass_Count) unidades de %(EventClass_Type_Localised), El precio de compra es %hnum(EventClass_BuyPrice,HNumList) créditos %ifgt(EventClass_Count,1,', El coste total es de %hnum(EventClass_TotalCost,HNumList) créditos')
 Static say_MarketSell $= Vendido %(EventClass_Count) unidades de %(EventClass_Type_Localised)<;> El precio de venta es %hnum(EventClass_SellPrice,HNumList) créditos')%ifne(EventClass_TotalSale,profit,', la venta total es de %hnum(EventClass_TotalSale,HNumList) créditos'), usted obtuvo de beneficio %hnum(profit,HNumList) créditos
 Static say_MiningRefined $= Refinado %(EventClass_FriendlyType)<;>%(EventClass_FriendlyType) Refinado
 
@@ -655,7 +656,7 @@ Static say_RenameSuitLoadout $= Confirmado Comandante, equipamiento %(EventClass
 
 Static say_SAAScanComplete $= Análisis de exploración de superficies en %body(EventClass_BodyName,EventStarSystem,say_ss), completo comandante, usadas %(EventClass_ProbesUsed) sondas <;> %body(EventClass_BodyName,EventStarSystem,say_ss), Escaneo completo con %(EventClass_ProbesUsed) sondas usadas
 
-Static say_SAASignalsFound $= %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' y ') señales de superficie encontradas en el cuerpo: %body(EventClass_BodyName,EventStarSystem,say_ss)
+Static say_SAASignalsFound $= Señales de superficie de tipo: %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' y '), encontradas en el cuerpo: %body(EventClass_BodyName,EventStarSystem,say_ss)
 
 Static say_SellExplorationData $= Vendido %(EventClass_SystemsCount) sistemas estelares por %hnum(EventClass_BaseValue,HNumList) créditos.
 Static say_SellExplorationDataBonus $= Y descubrió %(EventClass_DiscoveredCount) cuerpos por %hnum(EventClass_Bonus,HNumList)  créditos de bonificación.
@@ -671,7 +672,7 @@ Static suit_loadoutrename1 = "-; guión "
 Static suit_loadoutrename2 = "_; barra baja "
 Static suit_loadoutrename2 = ".; punto "
 Static say_SwitchSuitLoadout $= {{{Comandante, <;>Confirmado Comandante, }}}Cambiado traje %(EventClass_SuitName_Localised), por %rv(EventClass_LoadoutName,suit_loadoutrename)
-Static say_SuitLoadout $= {{{Comandante, su traje<;>El traje es}}} %(EventClass_SuitName_Localised), equipamiento %rv(EventClass_LoadoutName,suit_loadoutrename)
+Static say_SuitLoadout $= {{{Vistiendo<;>El traje es}}} %(EventClass_SuitName_Localised), equipamiento %rv(EventClass_LoadoutName,suit_loadoutrename)
 
 Static say_SellShipOnRebuy $= Vendida nave tipo %(EventClass_ShipType) por %hnum(EventClass_ShipPrice,HNumList) créditos para financiar la recompra de la nave actual
 Static say_SendText $= Mensaje enviado a %(EventClass_To_Localised)
@@ -679,7 +680,7 @@ Static say_SendText $= Mensaje enviado a %(EventClass_To_Localised)
 Static say_Scanned $= Advertencia, escaneo de %(EventClass_ScanType) detectado<;>Una nave está realizando un escaneo de %(EventClass_ScanType) sobre nosotros<;>Escaneo de %(EventClass_ScanType) detectado comandante<;>Estamos siendo escaneados para %(EventClass_ScanType)<;>Escaneo de %(EventClass_ScanType) detectado
 
 // always said on star
-Static say_ScanStar $= Estrella escaneada %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText)%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
+Static say_ScanStar $= "Estrella escaneada %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText)%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
 // gated on ScanStarMassDisable
 Static say_ScanStarMassMag $= , %roundnz(EventClass_nStellarMass,1,0.#,4) masas estelares
 Static say_ScanStarMassMag $+= , Magnitud absoluta %round(EventClass_nAbsoluteMagnitude,1,M0.#)
@@ -688,7 +689,7 @@ Static say_ScanStarRadius $= , Radio %roundnz(radius,2,0.#,4) soles
 Static say_ScanStarAge $= , antigüedad %hnum(%eval('%(EventClass_nAge)*1000000.0'),HNumList) años
 
 // always said on planet
-Static say_ScanPlanet $= "Escaneado: %Body(EventClass_BodyName,EventStarSystem,say_ss). %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rs(EventClass_PlanetClass,say_ss)\")"
+Static say_ScanPlanet $= "Escaneado: %Body(EventClass_BodyName,EventStarSystem,say_ss). %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rv(EventClass_PlanetTypeText,say_ss)\")"
 // gated on ScanPlanetBasicInformationDisable
 Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
 Static say_ScanPlanetDistance $= , Distancia %hnum(EventClass_DistanceFromArrivalLS,HNumList) segundos luz
@@ -730,9 +731,9 @@ Static say_SharedBookmarkToSquadron $= Marcador compartido con la Flota %(EventC
 Static say_ShipTargeted1 $+= El piloto es %(EventClass_PilotName_Localised), %(EventClass_PilotRank), en una %ship(EventClass_Ship_Localised)
 Static say_ShipTargeted2 $+= Escudo %round(EventClass_ShieldHealth,1,0.#) porciento, Casco a %round(EventClass_HullHealth,1,0.#) porciento
 Static say_ShipTargeted3 $+= "%ifeq(levelscanned,0,\"Apuntado %(EventClass_PilotName_Localised), \")"
-Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Fuera de la ley','La nave es %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Recompensa %hnum(EventClass_Bounty,HNumList) créditos') %ifnotempty(EventClass_Faction,', Facción %rv(EventClass_Faction,say_ss)')
+Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Lawless','La nave es %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Recompensa %hnum(EventClass_Bounty,HNumList) créditos') %ifnotempty(EventClass_Faction,', Facción %rv(EventClass_Faction,say_ss)')
 
-Static say_SRVDestroyed $= {{{Bum<;>Paf<;>Catapúm}}} Su VSR está destruido. Regresando a la nave nodriza
+Static say_SRVDestroyed $= {{{Bum<;>Paf<;>Catapúm}}}. Su VRS está destruido. Regresando a la nave nodriza
 Static say_SystemsShutdown $= {{{Alerta, <;>Peligro, <;>Prepárese, }}}{{{Nave enemiga<;>Otra nave}}} ha inutilizado la nave
 
 Static say_ShipyardBuy $= Compró una nave %ship(EventClass_ShipType) por %hnum(EventClass_ShipPrice,HNumList) créditos
@@ -769,7 +770,7 @@ Static say_SquadronCreated $= Creación de un nueva Flota %(EventClass_Name)<;>C
 Static say_SquadronDemotion $= {{{Te debes haber portado mal!<;>Oh, Dios mío<;>Oh, no}}}, Has sido degradado por tu Flota %(EventClass_Name) al rango de %(EventClass_NewRank)
 Static say_SquadronPromotion $= {{{Bien hecho<;>Felicidades<;>Bravo!}}} Has sido ascendido por tu Flota %(EventClass_Name) al rango de %(EventClass_NewRank)
 
-Static say_Touchdown $= %iftrue(EventClass_PlayerControlled,'{{{Aterrizaje exitoso, comandante<;>Aterrizaje, comandante<;>Contacto!}}}{{{ con latitud %round(EventClass_Latitude,2,M0.##), y Longitud %round(EventClass_Longitude,2,M0.##), }}}Bien hecho comandante<;>Motores apagados<;>Prepárese para operaciones en superficie','Nave de regreso de la órbita y lista para embarque;Nave aterrizada, listo para desembarcar')
+Static say_Touchdown $= %iftrue(EventClass_PlayerControlled,'{{{Aterrizaje exitoso, comandante<;>Aterrizaje, comandante<;>Contacto!}}}{{{ con latitud %round(EventClass_Latitude,2,0.##), y Longitud %round(EventClass_Longitude,2,0.##), }}}Bien hecho comandante<;>Motores apagados<;>Prepárese para operaciones en superficie','Nave de regreso de la órbita y lista para embarque<;>Nave aterrizada, listo para desembarcar')
 Static say_TechnologyBroker $= "Technology Broker has unlocked item %expandarray(EventClass_ItemsUnlocked,\", \",0,9,\"\",\"_Name_Localised\")"
 
 Static say_Undocked $= Despegando de %sc(EventClass_StationName), feliz vuelo comandante<;>Nave lista, al mando Comandante<;> Motores encendidos, saliendo de: %sc(EventClass_StationName)<;>Abandonando estación %sc(EventClass_StationName)
@@ -809,10 +810,10 @@ Static say_tx4 $= " Cr ; Créditos "
 Static say_tx5 $= "Mk. ;Mark "
 Static say_tx6 $= " CMDRs; Commanders"
 Static say_tx7 $= " cmdr; Commander"
-Static say_tx8 $= "O7; Salute "
-Static say_tx9 $= " O7; , Salute"
-Static say_tx10 $= "R;[^0-9]07; Salute, "
-Static say_tx11 $= "R;\s+07; Salute, "
+Static say_tx8 $= "O7; Saludos "
+Static say_tx9 $= " O7; , Saludos"
+REM removed, matching 61.07 Static say_tx10 $= "R;[^0-9]07; Salute Commander, "
+Static say_tx11 $= "R;\s+07; Saludos, "
 Static say_tx12 $= " CMDTs; Comandantes"
 Static say_tx13 $= " cmdt; Comandante"
 
@@ -1026,9 +1027,6 @@ If SpeechControls NotPresent Or SpeechControls NotContains SSMLDisable;
 
     Static say_tx_fc01 = r;\b(Drake)\b;<phoneme alphabet='ipa' ph = 'dreɪk'>Drake</phoneme>
 
-    // Commander Names
-    Static say_tx_cmdr01 = r;\b(Jugom)\b;<phoneme alphabet='ipa' ph = 'ˈj͡jugom'>Jugom</phoneme>    
-
     // Elite Dangerous Discovery
     Static say_tx_edd = r;\b(Elite Dangerous Discovery)\b;<phoneme alphabet='ipa' ph = 'eˈliːt'>Elite</phoneme><phoneme alphabet='ipa' ph = 'ˈdeɪnʤəɾøs'>Dangerous</phoneme><phoneme alphabet='ipa' ph = 'dɪsˈkʌvəɾi'>Discovery</phoneme>
 
@@ -1144,6 +1142,7 @@ If %(RefreshCount) <= 1
     Event PREFIX RK_ LAST Rank
     Rem pragma dumpvars LAST*
     Set speech = '%phrase("%expand(say_refresh)","<;>","{{{","}}}")'
+	
     If SpeechControls IsPresent And SpeechControls NotContains WelcomeMessageDisable;
         Call speak(speech="%(speech)")
 
@@ -2294,7 +2293,7 @@ PROGRAM ApproachBody
 Scan "%(EventClass_StarSystem)" "%(EventBodyName)"
 rem pragma dumpvars S_*
 
-If %(S_BodyFound) IsTrue And S_Body_gravity IsPresent And  %(S_Body_gravity) $!= "" And %(S_Body_gravity) >= 2.0
+If %(S_BodyFound) IsTrue And S_Body_gravityg IsPresent And %(S_Body_gravityg) $!= "" And %(S_Body_gravityg) >= 2.0
     Set v = say_ApproachBodyWarning
 Else 
     Set v = say_ApproachBody
@@ -2306,32 +2305,29 @@ END PROGRAM
 
 //*************************************************************
 // GenericResponse
-// Events: Bounty?(Condition AlwaysFalse), BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter?(Condition AlwaysFalse)
-// Events: EscapeInterdiction, FactionKillBond, FighterDestroyed?(Condition AlwaysFalse), FighterRebuilt, Interdicted, LaunchFighter
-// Events: PayFines, PayBounties, PayLegacyFines, PVPKill, RedeemVoucher, Scanned, CollectCargo?(Condition AlwaysFalse), CommunityGoalDiscard
-// Events: CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole, CrewAssign, CrewFire, CrewHire, CrewLaunchFighter?(Condition AlwaysFalse)
-// Events: CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession, JoinACrew, KickCrewMember, NpcCrewPaidWage?(Condition AlwaysFalse)
-// Events: NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution, EngineerProgress, EngineerLegacyConvert
-// Events: Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan, FSSDiscoveryScan, SAAScanComplete, SAASignalsFound
-// Events: ApproachSettlement(QueueLimit=1000), Docked, DockingDenied, DockingRequested?(Condition AlwaysFalse), DockingTimeout
-// Events: DockSRV, FuelScoop?(Condition AlwaysFalse)(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000)
-// Events: LaunchSRV, Liftoff, StartJump?(Condition AlwaysFalse)(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked
-// Events: USSDrop, MissionAbandoned?(Condition AlwaysFalse), MissionAccepted?(Condition AlwaysFalse), MissionCompleted?(Condition AlwaysFalse)
-// Events: MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined?(Condition AlwaysFalse), MaterialCollected, MaterialDiscarded
-// Events: MaterialDiscovered, MaterialTrade, ClearSavedGame, Died?(Condition AlwaysFalse), DatalinkScan, DatalinkVoucher
-// Events: DataScanned, Promotion, Resurrect?(Condition AlwaysFalse), ScientificResearch, Screenshot, SearchAndRescue, SendText?(Condition AlwaysFalse)
-// Events: PowerplayCollect, PowerplayDefect, PowerplayDeliver, PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary
-// Events: PowerplayVote, PowerplayVoucher, AfmuRepairs, BuyDrones, FetchRemoteModule, HeatDamage?(Condition AlwaysFalse)
-// Events: HeatWarning?(Condition AlwaysFalse), LaunchDrone?(Condition AlwaysFalse), MassModuleStore, ModuleBuy, ModuleRetrieve
+// Events: Bounty?(Condition AlwaysFalse), BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter, EscapeInterdiction
+// Events: FactionKillBond, FighterDestroyed, FighterRebuilt, Interdicted, LaunchFighter, PayFines, PayBounties, PayLegacyFines
+// Events: PVPKill, RedeemVoucher, Scanned, CollectCargo, CommunityGoalDiscard, CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole
+// Events: CrewAssign, CrewFire, CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession
+// Events: JoinACrew, KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution
+// Events: EngineerProgress, EngineerLegacyConvert, Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan
+// Events: FSSDiscoveryScan, SAAScanComplete, SAASignalsFound, ApproachSettlement(QueueLimit=1000), Docked, DockingDenied
+// Events: DockingRequested, DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000)
+// Events: LaunchSRV, Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, USSDrop, MissionAbandoned
+// Events: MissionAccepted, MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined, MaterialCollected
+// Events: MaterialDiscarded, MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan, DatalinkVoucher, DataScanned
+// Events: Promotion, Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect, PowerplayDefect
+// Events: PowerplayDeliver, PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher
+// Events: AfmuRepairs, BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore, ModuleBuy, ModuleRetrieve
 // Events: ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName, ShipyardBuy
 // Events: ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial
 // Events: Repair, RepairDrone, RepairAll, RestockVehicle, SelfDestruct, SystemsShutdown, VehicleSwitch, AppliedToSquadron
 // Events: DisbandedSquadron, InvitedToSquadron, JoinedSquadron, KickedFromSquadron, LeftSquadron, SharedBookmarkToSquadron
 // Events: SquadronCreated, SquadronDemotion, SquadronPromotion, WonATrophyForSquadron, BuyTradeData, CargoDepot, EjectCargo
-// Events: MarketBuy, CargoTransfer, WingAdd, WingJoin, WingLeave, WingInvite, BuyWeapon, CollectItems, CreateSuitLoadout
-// Events: DeleteSuitLoadout, Disembark, DropItems, DropShipDeploy, Embark, LoadoutEquipModule, LoadoutRemoveModule, RenameSuitLoadout
-// Events: ScanOrganic, SellOrganicData, SellSuit, SellWeapon, SuitLoadout, SwitchSuitLoadout, UpgradeSuit, UpgradeWeapon
-// Events: UseConsumable, onTimer?(TimerName Contains VoicePackGenericDelay)
+// Events: MarketBuy, WingAdd, WingJoin, WingLeave, WingInvite, BuyWeapon, CollectItems, CreateSuitLoadout, DeleteSuitLoadout
+// Events: Disembark, DropItems, DropShipDeploy, Embark, LoadoutEquipModule, LoadoutRemoveModule, RenameSuitLoadout, ScanOrganic
+// Events: SellOrganicData, SellSuit, SellWeapon, SuitLoadout, SwitchSuitLoadout, UpgradeSuit, UpgradeWeapon, UseConsumable
+// Events: onTimer?(TimerName Contains VoicePackGenericDelay)
 //*************************************************************
 PROGRAM GenericResponse
 
@@ -2353,13 +2349,13 @@ END PROGRAM
 
 //*************************************************************
 // GenericResponseUI
-// Events: UILights?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UIFireGroup?(Condition AlwaysFalse)(QueueLimit=200)
-// Events: UIShieldsUp?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UILandingGear?(Condition AlwaysFalse)(QueueLimit=2000)
+// Events: UILights?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UIFireGroup?(EventClass_EventRefresh IsFalse)(QueueLimit=200)
+// Events: UIShieldsUp?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UILandingGear?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
 // Events: UIHardpointsDeployed?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UIInWing?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
-// Events: UICargoScoopDeployed?(Condition AlwaysFalse)(QueueLimit=2000), UISilentRunning?(Condition AlwaysFalse)(QueueLimit=2000)
-// Events: UIScoopingFuel?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UISrvHandbrake?(Condition AlwaysFalse)(QueueLimit=2000)
+// Events: UICargoScoopDeployed?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UISilentRunning?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
+// Events: UIScoopingFuel?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UISrvHandbrake?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
 // Events: UISrvTurret?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UISrvUnderShip?(EventClass_EventRefresh IsFalse)(QueueLimit=2000,MaxRepeat=20000)
-// Events: UIFsdMassLocked?(EventClass_EventRefresh IsFalse)(QueueLimit=2000,MaxRepeat=20000), UIFsdCharging?(Condition AlwaysFalse)(QueueLimit=2000)
+// Events: UIFsdMassLocked?(EventClass_EventRefresh IsFalse)(QueueLimit=2000,MaxRepeat=20000), UIFsdCharging?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
 // Events: UIFsdCooldown?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UILowFuel?(EventClass_EventRefresh IsFalse), UIOverHeating?(EventClass_EventRefresh IsFalse)(QueueLimit=5000)
 // Events: UIBeingInterdicted?(EventClass_EventRefresh IsFalse), UIShipTargeted?(EventClass_ShipTargeted_TargetLocked == 0 And EventClass_EventRefresh IsFalse)
 // Events: UIGlideMode?(EventClass_EventRefresh IsFalse And EventClass_GlideMode IsFalse)
