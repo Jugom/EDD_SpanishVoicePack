@@ -1,4 +1,4 @@
-ACTIONFILE V4
+﻿ACTIONFILE V4
 
 ENABLED True
 
@@ -40,11 +40,11 @@ EVENT Bounty, GenericResponse, "", Condition AlwaysTrue
 EVENT BuyAmmo, GenericResponse, "", Condition AlwaysTrue
 EVENT CapShipBond, GenericResponse, "", Condition AlwaysTrue
 EVENT CockpitBreached, GenericResponse, Volume=100, Condition AlwaysTrue
-EVENT CommitCrime, CommitCrime, "", Condition AlwaysTrue
-EVENT DockFighter, GenericResponse, "", Condition AlwaysTrue
+EVENT CommitCrime, CommitCrime, "", Condition AlwaysFalse
+EVENT DockFighter, GenericResponse, "", Condition AlwaysFalse
 EVENT EscapeInterdiction, GenericResponse, "", Condition AlwaysTrue
-EVENT FactionKillBond, GenericResponse, "", Condition AlwaysTrue
-EVENT FighterDestroyed, GenericResponse, "", Condition AlwaysTrue
+EVENT FactionKillBond, GenericResponse, "", Condition AlwaysFalse
+EVENT FighterDestroyed, GenericResponse, "", Condition AlwaysFalse
 EVENT FighterRebuilt, GenericResponse, "", Condition AlwaysTrue
 EVENT Interdicted, GenericResponse, "", Condition AlwaysTrue
 EVENT Interdiction, Interdiction, "", Condition AlwaysTrue
@@ -59,7 +59,7 @@ EVENT ShipTargeted, ShipTargeted, "", Condition AlwaysTrue
 
 GROUP CommunityGoals
 
-EVENT CollectCargo, GenericResponse, "", Condition AlwaysTrue
+EVENT CollectCargo, GenericResponse, "", Condition AlwaysFalse
 EVENT CommunityGoal, CommunityGoal, "", Condition AlwaysTrue
 EVENT CommunityGoalDiscard, GenericResponse, "", Condition AlwaysTrue
 EVENT CommunityGoalJoin, GenericResponse, "", Condition AlwaysTrue
@@ -71,21 +71,21 @@ EVENT ChangeCrewRole, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewAssign, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewFire, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewHire, GenericResponse, "", Condition AlwaysTrue
-EVENT CrewLaunchFighter, GenericResponse, "", Condition AlwaysTrue
+EVENT CrewLaunchFighter, GenericResponse, "", Condition AlwaysFalse
 EVENT CrewMemberJoins, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewMemberRoleChange, GenericResponse, "", Condition AlwaysTrue
 EVENT CrewMemberQuits, GenericResponse, "", Condition AlwaysTrue
 EVENT EndCrewSession, GenericResponse, "", Condition AlwaysTrue
 EVENT JoinACrew, GenericResponse, "", Condition AlwaysTrue
 EVENT KickCrewMember, GenericResponse, "", Condition AlwaysTrue
-EVENT NpcCrewPaidWage, GenericResponse, "", Condition AlwaysTrue
+EVENT NpcCrewPaidWage, GenericResponse, "", Condition AlwaysFalse
 EVENT NpcCrewRank, GenericResponse, "", Condition AlwaysTrue
 EVENT QuitACrew, GenericResponse, "", Condition AlwaysTrue
 
 GROUP Engineering/Synthesis
 
 EVENT EngineerApply, GenericResponse, "", Condition AlwaysTrue
-EVENT EngineerCraft, GenericResponse, "", Condition AlwaysTrue
+EVENT EngineerCraft, GenericResponse, "", Condition AlwaysFalse
 EVENT EngineerContribution, GenericResponse, "", Condition AlwaysTrue
 EVENT EngineerProgress, GenericResponse, "", Condition AlwaysTrue
 EVENT EngineerLegacyConvert, GenericResponse, "", Condition AlwaysTrue
@@ -116,17 +116,17 @@ EVENT DockingCancelled, DockingCancelled, "", Condition AlwaysTrue
 EVENT DockingDenied, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingGranted, GenericDelayedResponse, "Delay=15,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
 EVENT onTimer, DockingGrantedResponse, "", TimerName Contains VoicePackDockingGrantedDelay
-EVENT DockingRequested, GenericResponse, "", Condition AlwaysTrue
+EVENT DockingRequested, GenericResponse, "", Condition AlwaysFalse
 EVENT DockingTimeout, GenericResponse, "", Condition AlwaysTrue
 EVENT DockSRV, GenericResponse, "", Condition AlwaysTrue
 EVENT FSDJump, FSDResponse, QueueLimit=5000, Condition AlwaysTrue
-EVENT FuelScoop, GenericResponse, QueueLimit=3000, Condition AlwaysTrue
+EVENT FuelScoop, GenericResponse, QueueLimit=3000, Condition AlwaysFalse
 EVENT JetConeBoost, GenericResponse, "", Condition AlwaysTrue
 EVENT JetConeDamage, GenericResponse, "", Condition AlwaysTrue
 EVENT LeaveBody, GenericResponse, QueueLimit=5000, Condition AlwaysTrue
 EVENT LaunchSRV, GenericResponse, "", Condition AlwaysTrue
 EVENT Liftoff, GenericResponse, "", Condition AlwaysTrue
-EVENT StartJump, GenericResponse, Priority=HighClear, Condition AlwaysTrue
+EVENT StartJump, GenericResponse, Priority=HighClear, Condition AlwaysFalse
 EVENT SupercruiseEntry, GenericResponse, "", Condition AlwaysTrue
 EVENT SupercruiseExit, SupercruiseExit, "", Condition AlwaysTrue
 EVENT Touchdown, GenericResponse, "", Condition AlwaysTrue
@@ -135,16 +135,16 @@ EVENT USSDrop, GenericResponse, "", Condition AlwaysTrue
 
 GROUP Missions
 
-EVENT MissionAbandoned, GenericResponse, "", Condition AlwaysTrue
-EVENT MissionAccepted, GenericResponse, "", Condition AlwaysTrue
-EVENT MissionCompleted, GenericResponse, "", Condition AlwaysTrue
+EVENT MissionAbandoned, GenericResponse, "", Condition AlwaysFalse
+EVENT MissionAccepted, GenericResponse, "", Condition AlwaysFalse
+EVENT MissionCompleted, GenericResponse, "", Condition AlwaysFalse
 EVENT MissionFailed, GenericResponse, "", Condition AlwaysTrue
 EVENT MissionRedirected, GenericResponse, "", Condition AlwaysTrue
 
 GROUP Mining
 
 EVENT AsteroidCracked, GenericResponse, "", Condition AlwaysTrue
-EVENT MiningRefined, GenericResponse, "", Condition AlwaysTrue
+EVENT MiningRefined, GenericResponse, "", Condition AlwaysFalse
 
 GROUP Materials
 
@@ -156,18 +156,18 @@ EVENT MaterialTrade, GenericResponse, "", Condition AlwaysTrue
 GROUP Misc
 
 EVENT ClearSavedGame, GenericResponse, "", Condition AlwaysTrue
-EVENT Died, GenericResponse, "", Condition AlwaysTrue
-EVENT DatalinkScan, GenericResponse, "", Condition AlwaysTrue
+EVENT Died, GenericResponse, "", Condition AlwaysFalse
+EVENT DatalinkScan, GenericResponse, "", Condition AlwaysFalse
 EVENT DatalinkVoucher, GenericResponse, "", Condition AlwaysTrue
 EVENT DataScanned, GenericResponse, "", Condition AlwaysTrue
 EVENT Friends, Friends, "", Condition AlwaysTrue
 EVENT Promotion, GenericResponse, "", Condition AlwaysTrue
 EVENT ReceiveText, ReceiveText, "", Condition AlwaysTrue
-EVENT Resurrect, GenericResponse, "", Condition AlwaysTrue
+EVENT Resurrect, GenericResponse, "", Condition AlwaysFalse
 EVENT ScientificResearch, GenericResponse, "", Condition AlwaysTrue
 EVENT Screenshot, GenericResponse, "", Condition AlwaysTrue
 EVENT SearchAndRescue, GenericResponse, "", Condition AlwaysTrue
-EVENT SendText, GenericResponse, "", Condition AlwaysTrue
+EVENT SendText, GenericResponse, "", Condition AlwaysFalse
 
 GROUP Powerplay
 
@@ -184,12 +184,12 @@ EVENT PowerplayVoucher, GenericResponse, "", Condition AlwaysTrue
 GROUP Ship/SRV
 
 EVENT AfmuRepairs, GenericResponse, "", Condition AlwaysTrue
-EVENT BuyDrones, GenericResponse, "", Condition AlwaysTrue
+EVENT BuyDrones, GenericResponse, "", Condition AlwaysFalse
 EVENT FetchRemoteModule, GenericResponse, "", Condition AlwaysTrue
-EVENT HeatDamage, GenericResponse, "", Condition AlwaysTrue
-EVENT HeatWarning, GenericResponse, "", Condition AlwaysTrue
+EVENT HeatDamage, GenericResponse, "", Condition AlwaysFalse
+EVENT HeatWarning, GenericResponse, "", Condition AlwaysFalse
 EVENT HullDamage, HullDamage, "", Condition AlwaysTrue
-EVENT LaunchDrone, GenericResponse, "", Condition AlwaysTrue
+EVENT LaunchDrone, GenericResponse, "", Condition AlwaysFalse
 EVENT MassModuleStore, GenericResponse, "", Condition AlwaysTrue
 EVENT ModuleBuy, GenericResponse, "", Condition AlwaysTrue
 EVENT ModuleRetrieve, GenericResponse, "", Condition AlwaysTrue
@@ -198,7 +198,7 @@ EVENT ModuleSellRemote, GenericResponse, "", Condition AlwaysTrue
 EVENT ModuleStore, GenericResponse, "", Condition AlwaysTrue
 EVENT ModuleSwap, GenericResponse, "", Condition AlwaysTrue
 EVENT SellShipOnRebuy, GenericResponse, "", Condition AlwaysTrue
-EVENT SellDrones, GenericResponse, "", Condition AlwaysTrue
+EVENT SellDrones, GenericResponse, "", Condition AlwaysFalse
 EVENT SetUserShipName, GenericResponse, "", Condition AlwaysTrue
 EVENT ShipyardBuy, GenericResponse, "", Condition AlwaysTrue
 EVENT ShipyardNew, GenericResponse, "", Condition AlwaysTrue
@@ -207,12 +207,12 @@ EVENT ShipyardSwap, GenericResponse, "", Condition AlwaysTrue
 EVENT ShipyardTransfer, GenericResponse, "", Condition AlwaysTrue
 EVENT SRVDestroyed, GenericResponse, "", Condition AlwaysTrue
 EVENT RebootRepair, GenericResponse, "", Condition AlwaysTrue
-EVENT RefuelAll, GenericResponse, "", Condition AlwaysTrue
-EVENT RefuelPartial, GenericResponse, "", Condition AlwaysTrue
-EVENT Repair, GenericResponse, "", Condition AlwaysTrue
+EVENT RefuelAll, GenericResponse, "", Condition AlwaysFalse
+EVENT RefuelPartial, GenericResponse, "", Condition AlwaysFalse
+EVENT Repair, GenericResponse, "", Condition AlwaysFalse
 EVENT RepairDrone, GenericResponse, "", Condition AlwaysTrue
-EVENT RepairAll, GenericResponse, "", Condition AlwaysTrue
-EVENT RestockVehicle, GenericResponse, "", Condition AlwaysTrue
+EVENT RepairAll, GenericResponse, "", Condition AlwaysFalse
+EVENT RestockVehicle, GenericResponse, "", Condition AlwaysFalse
 EVENT SelfDestruct, GenericResponse, "", Condition AlwaysTrue
 EVENT SystemsShutdown, GenericResponse, "", Condition AlwaysTrue
 EVENT VehicleSwitch, GenericResponse, "", Condition AlwaysTrue
@@ -291,26 +291,26 @@ EVENT onKeyPress, SayPhoneme, "", KeyPress $== Alt+F12
 GROUP UIEvents
 
 EVENT UILights, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UIFireGroup, GenericResponseUI, QueueLimit=200, EventClass_EventRefresh IsFalse
+EVENT UIFireGroup, GenericResponseUI, QueueLimit=200, Condition AlwaysFalse
 EVENT UIShieldsUp, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UILandingGear, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
+EVENT UILandingGear, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
 EVENT UIHardpointsDeployed, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UIInWing, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UICargoScoopDeployed, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UISilentRunning, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UIScoopingFuel, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UISrvHandbrake, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
+EVENT UICargoScoopDeployed, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UISilentRunning, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UIScoopingFuel, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UISrvHandbrake, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
 EVENT UISrvTurret, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
 EVENT UISrvUnderShip, GenericResponseUI, "QueueLimit=2000,MaxRepeat=20000", EventClass_EventRefresh IsFalse
 EVENT UIFsdMassLocked, GenericResponseUI, "QueueLimit=2000,MaxRepeat=20000", EventClass_EventRefresh IsFalse
-EVENT UIFsdCharging, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
-EVENT UIFsdCooldown, GenericResponseUI, QueueLimit=2000, EventClass_EventRefresh IsFalse
+EVENT UIFsdCharging, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
+EVENT UIFsdCooldown, GenericResponseUI, QueueLimit=2000, Condition AlwaysFalse
 EVENT UILowFuel, GenericResponseUI, "", EventClass_EventRefresh IsFalse
 EVENT UIOverHeating, GenericResponseUI, QueueLimit=5000, EventClass_EventRefresh IsFalse
 EVENT UIBeingInterdicted, GenericResponseUI, "", EventClass_EventRefresh IsFalse
 EVENT UIShipTargeted, GenericResponseUI, "", EventClass_ShipTargeted_TargetLocked == 0 And EventClass_EventRefresh IsFalse
 EVENT UIGlideMode, GenericResponseUI, "", EventClass_EventRefresh IsFalse And EventClass_GlideMode IsFalse
-EVENT UISelectedWeapon, SelectedWeapon, "", EventClass_EventRefresh IsFalse
+EVENT UISelectedWeapon, SelectedWeapon, "", Condition AlwaysFalse
 EVENT UIMusic, Music, "", EventClass_EventRefresh IsFalse
 
 GROUP PanelEvents
@@ -834,10 +834,10 @@ Static say_tx4 $= " Cr ; Créditos "
 Static say_tx5 $= "Mk. ;Mark "
 Static say_tx6 $= " CMDRs; Commanders"
 Static say_tx7 $= " cmdr; Commander"
-Static say_tx8 $= "O7; Saludos "
-Static say_tx9 $= " O7; , Saludos"
+Static say_tx8 $= "O7; Salute "
+Static say_tx9 $= " O7; , Salute"
 Rem removed, matching 61.07 Static say_tx10 $= "R;[^0-9]07; Salute Commander, "
-Static say_tx11 $= "R;\s+07; Saludos, "
+Static say_tx11 $= "R;\s+07; Salute, "
 Static say_tx12 $= " CMDTs; Comandantes"
 Static say_tx13 $= " cmdt; Comandante"
 
@@ -1054,6 +1054,9 @@ If SpeechControls NotPresent Or SpeechControls NotContains SSMLDisable;
     Static say_tx_ship38 = r;\b(Vulture)\b;<phoneme alphabet='ipa' ph = 'ˈvʌl.t͡ʃəɾ'>Vulture</phoneme>
 
     Static say_tx_fc01 = r;\b(Drake)\b;<phoneme alphabet='ipa' ph = 'dreɪk'>Drake</phoneme>
+
+    // Commander Names
+    Static say_tx_cmdr01 = r;\b(Jugom)\b;<phoneme alphabet='ipa' ph = 'ˈj͡jugom'>Jugom</phoneme>    
 
     // Elite Dangerous Discovery
     Static say_tx_edd = r;\b(Elite Dangerous Discovery)\b;<phoneme alphabet='ipa' ph = 'eˈliːt'>Elite</phoneme><phoneme alphabet='ipa' ph = 'ˈdeɪnʤəɾøs'>Dangerous</phoneme><phoneme alphabet='ipa' ph = 'dɪsˈkʌvəɾi'>Discovery</phoneme>
@@ -1380,7 +1383,7 @@ Let health100 = %(EventClass_Health)*100
 Let health = %floor(health100,N0)
 If health < 50
     Set speech = '%phrase("%expand(say_HullDamageCritical)","<;>","{{{","}}}")'
-    Call speak(speech="%(speech)", Volume=100)
+    Call speak(speech="%(speech)")
 Else 
     Set speech = '%phrase("%expand(say_HullDamage)","<;>","{{{","}}}")'
     Call speak(speech="%(speech)")
@@ -1389,7 +1392,7 @@ END PROGRAM
 
 //*************************************************************
 // CommitCrime
-// Events: CommitCrime
+// Events: CommitCrime?(Condition AlwaysFalse)
 //*************************************************************
 PROGRAM CommitCrime
 
@@ -2181,7 +2184,7 @@ END PROGRAM
 
 //*************************************************************
 // SelectedWeapon
-// Events: UISelectedWeapon?(EventClass_EventRefresh IsFalse)
+// Events: UISelectedWeapon?(Condition AlwaysFalse)
 //*************************************************************
 PROGRAM SelectedWeapon
 
@@ -2333,29 +2336,33 @@ END PROGRAM
 
 //*************************************************************
 // GenericResponse
-// Events: Bounty, BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter, EscapeInterdiction, FactionKillBond, FighterDestroyed
-// Events: FighterRebuilt, Interdicted, LaunchFighter, PayFines, PayBounties, PayLegacyFines, PVPKill, RedeemVoucher, Scanned
-// Events: CollectCargo, CommunityGoalDiscard, CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole, CrewAssign, CrewFire
-// Events: CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession, JoinACrew
-// Events: KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution, EngineerProgress
+// Events: Bounty, BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter?(Condition AlwaysFalse), EscapeInterdiction
+// Events: FactionKillBond?(Condition AlwaysFalse), FighterDestroyed?(Condition AlwaysFalse), FighterRebuilt, Interdicted
+// Events: LaunchFighter, PayFines, PayBounties, PayLegacyFines, PVPKill, RedeemVoucher, Scanned, CollectCargo?(Condition AlwaysFalse)
+// Events: CommunityGoalDiscard, CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole, CrewAssign, CrewFire, CrewHire, CrewLaunchFighter?(Condition AlwaysFalse)
+// Events: CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession, JoinACrew, KickCrewMember, NpcCrewPaidWage?(Condition AlwaysFalse)
+// Events: NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft?(Condition AlwaysFalse), EngineerContribution, EngineerProgress
 // Events: EngineerLegacyConvert, Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan, FSSDiscoveryScan
-// Events: SAAScanComplete, SAASignalsFound, ApproachSettlement(QueueLimit=20000), Docked, DockingDenied, DockingRequested
-// Events: DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000), LaunchSRV
-// Events: Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, USSDrop, MissionAbandoned, MissionAccepted
-// Events: MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined, MaterialCollected, MaterialDiscarded
-// Events: MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan, DatalinkVoucher, DataScanned, Promotion
-// Events: Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect, PowerplayDefect, PowerplayDeliver
-// Events: PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher, AfmuRepairs
-// Events: BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore, ModuleBuy, ModuleRetrieve
-// Events: ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName, ShipyardBuy
-// Events: ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial
-// Events: Repair, RepairDrone, RepairAll, RestockVehicle, SelfDestruct, SystemsShutdown, VehicleSwitch, AppliedToSquadron
-// Events: DisbandedSquadron, InvitedToSquadron, JoinedSquadron, KickedFromSquadron, LeftSquadron, SharedBookmarkToSquadron
-// Events: SquadronCreated, SquadronDemotion, SquadronPromotion, WonATrophyForSquadron, BuyTradeData, CargoDepot, EjectCargo
-// Events: MarketBuy, WingAdd, WingJoin, WingLeave, WingInvite, BuyWeapon, CollectItems, CreateSuitLoadout, DeleteSuitLoadout
-// Events: Disembark, DropItems, DropShipDeploy, Embark, LoadoutEquipModule, LoadoutRemoveModule, RenameSuitLoadout, ScanOrganic
-// Events: SellOrganicData, SellSuit, SellWeapon, SuitLoadout, SwitchSuitLoadout, UpgradeSuit, UpgradeWeapon, UseConsumable
-// Events: onTimer?(TimerName Contains VoicePackGenericDelay)
+// Events: SAAScanComplete, SAASignalsFound, ApproachSettlement(QueueLimit=20000), Docked, DockingDenied, DockingRequested?(Condition AlwaysFalse)
+// Events: DockingTimeout, DockSRV, FuelScoop?(Condition AlwaysFalse)(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000)
+// Events: LaunchSRV, Liftoff, StartJump?(Condition AlwaysFalse)(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked
+// Events: USSDrop, MissionAbandoned?(Condition AlwaysFalse), MissionAccepted?(Condition AlwaysFalse), MissionCompleted?(Condition AlwaysFalse)
+// Events: MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined?(Condition AlwaysFalse), MaterialCollected, MaterialDiscarded
+// Events: MaterialDiscovered, MaterialTrade, ClearSavedGame, Died?(Condition AlwaysFalse), DatalinkScan?(Condition AlwaysFalse)
+// Events: DatalinkVoucher, DataScanned, Promotion, Resurrect?(Condition AlwaysFalse), ScientificResearch, Screenshot, SearchAndRescue
+// Events: SendText?(Condition AlwaysFalse), PowerplayCollect, PowerplayDefect, PowerplayDeliver, PowerplayFastTrack, PowerplayJoin
+// Events: PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher, AfmuRepairs, BuyDrones?(Condition AlwaysFalse)
+// Events: FetchRemoteModule, HeatDamage?(Condition AlwaysFalse), HeatWarning?(Condition AlwaysFalse), LaunchDrone?(Condition AlwaysFalse)
+// Events: MassModuleStore, ModuleBuy, ModuleRetrieve, ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy
+// Events: SellDrones?(Condition AlwaysFalse), SetUserShipName, ShipyardBuy, ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer
+// Events: SRVDestroyed, RebootRepair, RefuelAll?(Condition AlwaysFalse), RefuelPartial?(Condition AlwaysFalse), Repair?(Condition AlwaysFalse)
+// Events: RepairDrone, RepairAll?(Condition AlwaysFalse), RestockVehicle?(Condition AlwaysFalse), SelfDestruct, SystemsShutdown
+// Events: VehicleSwitch, AppliedToSquadron, DisbandedSquadron, InvitedToSquadron, JoinedSquadron, KickedFromSquadron, LeftSquadron
+// Events: SharedBookmarkToSquadron, SquadronCreated, SquadronDemotion, SquadronPromotion, WonATrophyForSquadron, BuyTradeData
+// Events: CargoDepot, EjectCargo, MarketBuy, WingAdd, WingJoin, WingLeave, WingInvite, BuyWeapon, CollectItems, CreateSuitLoadout
+// Events: DeleteSuitLoadout, Disembark, DropItems, DropShipDeploy, Embark, LoadoutEquipModule, LoadoutRemoveModule, RenameSuitLoadout
+// Events: ScanOrganic, SellOrganicData, SellSuit, SellWeapon, SuitLoadout, SwitchSuitLoadout, UpgradeSuit, UpgradeWeapon
+// Events: UseConsumable, onTimer?(TimerName Contains VoicePackGenericDelay)
 //*************************************************************
 PROGRAM GenericResponse
 
@@ -2377,14 +2384,14 @@ END PROGRAM
 
 //*************************************************************
 // GenericResponseUI
-// Events: UILights?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UIFireGroup?(EventClass_EventRefresh IsFalse)(QueueLimit=200)
-// Events: UIShieldsUp?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UILandingGear?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
+// Events: UILights?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UIFireGroup?(Condition AlwaysFalse)(QueueLimit=200)
+// Events: UIShieldsUp?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UILandingGear?(Condition AlwaysFalse)(QueueLimit=2000)
 // Events: UIHardpointsDeployed?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UIInWing?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
-// Events: UICargoScoopDeployed?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UISilentRunning?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
-// Events: UIScoopingFuel?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UISrvHandbrake?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
+// Events: UICargoScoopDeployed?(Condition AlwaysFalse)(QueueLimit=2000), UISilentRunning?(Condition AlwaysFalse)(QueueLimit=2000)
+// Events: UIScoopingFuel?(Condition AlwaysFalse)(QueueLimit=2000), UISrvHandbrake?(Condition AlwaysFalse)(QueueLimit=2000)
 // Events: UISrvTurret?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UISrvUnderShip?(EventClass_EventRefresh IsFalse)(QueueLimit=2000,MaxRepeat=20000)
-// Events: UIFsdMassLocked?(EventClass_EventRefresh IsFalse)(QueueLimit=2000,MaxRepeat=20000), UIFsdCharging?(EventClass_EventRefresh IsFalse)(QueueLimit=2000)
-// Events: UIFsdCooldown?(EventClass_EventRefresh IsFalse)(QueueLimit=2000), UILowFuel?(EventClass_EventRefresh IsFalse), UIOverHeating?(EventClass_EventRefresh IsFalse)(QueueLimit=5000)
+// Events: UIFsdMassLocked?(EventClass_EventRefresh IsFalse)(QueueLimit=2000,MaxRepeat=20000), UIFsdCharging?(Condition AlwaysFalse)(QueueLimit=2000)
+// Events: UIFsdCooldown?(Condition AlwaysFalse)(QueueLimit=2000), UILowFuel?(EventClass_EventRefresh IsFalse), UIOverHeating?(EventClass_EventRefresh IsFalse)(QueueLimit=5000)
 // Events: UIBeingInterdicted?(EventClass_EventRefresh IsFalse), UIShipTargeted?(EventClass_ShipTargeted_TargetLocked == 0 And EventClass_EventRefresh IsFalse)
 // Events: UIGlideMode?(EventClass_EventRefresh IsFalse And EventClass_GlideMode IsFalse)
 //*************************************************************
