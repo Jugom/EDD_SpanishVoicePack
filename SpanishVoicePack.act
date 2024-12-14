@@ -4,8 +4,8 @@ ENABLED True
 
 INSTALL LongDescription="Esta es la versión 23 del paquete de voz para EDD, para la versión 18.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
 INSTALL ShortDescription="Archivo de voz para ED"
-INSTALL Version=23.0.1.0
-INSTALL MinEDVersion=18.1.0.0
+INSTALL Version=23.1.0.0
+INSTALL MinEDVersion=18.1.4.0
 INSTALL Location=Actions
 INSTALL DisableOther1=SpanishVoicePackV1
 INSTALL DisableOther2=SpanishVoicePackV2
@@ -478,14 +478,14 @@ Static say_Embark $= {{{Abordando}}} %iftrue(EventClass_Taxi,'Taxi Apex','%iftru
 Static say_edsmscannoinfo $= Ninguna otra información sobre el sistema<;>La computadora de la nave no tiene otra información sobre este sistema<;>La búsqueda en la WikiPedia ha fallado! No puedo encontrar nada en este sistema<;>No he encontrado información sobre este sistema ni en google, comandante<;>Información del sistema no disponible
 Static say_edsmscanstarsplanets $= "Total de %(totalstars) %ifne(totalstars,\"1\",\"estrellas\",\"estrella\") y %(totalplanets) %ifne(totalplanets,\"1\",\"planetas\",\"planeta\") en este sistema"
 
-Static say_edsmscanstarinfo $= "%(type) %star(starbodyname,say_ss), Type %(startype), Masa %roundnz(mass,1,0.#,4) Soles, %ifnonzero(planets,\" %(planets) planetas\")"
-Static say_edsmscanstarnoinfo $= "Sin information sobre %(type) %star(ownname,say_ss), %ifnonzero(planets,\" %(planets) planetas\"). "
+Static say_edsmscanstarinfo $= "%(type) %star(starbodyname,say_ss), Type %(startype), Masa %roundnz(mass,1,0.#,4) Soles, %ifnonzero(planets,\" %(planets) planetas. \")"
+Static say_edsmscanstarnoinfo $= "Sin información sobre %(type) %star(ownname,say_ss), %ifnonzero(planets,\" %(planets) planetas\"). "
 Static say_edsmscanstarbarycentre $= "Baricentro %star(ownname,say_ss), %ifnonzero(planets,\" %(planets) planetas\"). "
 
 Static say_edsmscanbodystarinfo $= "%star(pname,say_ss), %sc(stype), masa %roundnz(mass,1,0.#,4) Soles. "
-Static say_edsmscanbodyinfo $= "%body(pname,ScanSystem,say_ss), %(terraform)%(class)%ifnotcontains(landable,\"No \",\", Aterrizable\")"
-Static say_edsmscanbodyinfoAtmos $= "%ifnotempty(atmos,\", %(atmos)\")%ifnotcontains(atmos,\"atmosphere\",\" atmósfera \",\"\",\"\")"
-Static say_edsmscanbodyinfoVolcanism $= "%ifnotempty(volcanism, \", %(volcanism)\")"
+Static say_edsmscanbodyinfo $= "%body(pname,ScanSystem,say_ss), %(terraform) %(class)%ifnotcontains(landable,\"No \",\", Aterrizable\")"
+Static say_edsmscanbodyinfoAtmos $= %ifnotcontains(atmos,'no atmos', ', %(atmos)') %ifnotcontains(atmos,'atmosphere',' atmósfera ','','')
+Static say_edsmscanbodyinfoVolcanism $= %ifnotcontains(volcanism, 'no vol', ', vulcanismo %(volcanism)')
 Static say_edsmscanbodyinfoMat $= ", Materiales detectados "
 Static say_edsmscanbodynoinfo $= No hay información sobre %(ownname).
 
@@ -699,10 +699,10 @@ Static say_ScanPlanet $= "Escaneado: %replacevar(\"%body(EventClass_BodyName,Eve
 Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
 Static say_ScanPlanetDistance $= , Distancia %hnum(EventClass_DistanceFromArrivalLS,HNumList) segundos luz
 Static say_ScanPlanetLandable $= , Aterrizable
-Static say_ScanPlanetAtmosphere $= , %(FinalAtmosphere) %ifnotcontains(EventClass_Atmosphere, ' atmósfera','')
+Static say_ScanPlanetAtmosphere $= , %sc(EventClass_AtmosphereTranslated) %ifnotcontains(EventClass_Atmosphere, ' atmósfera','')
 Static say_ScanPlanetNoAtmosphere $= , Sin atmósfera
 // gated on ScanPlanetExtendedInformationEnable
-Static say_ScanPlanetVolcanism $= , %(EventClass_Volcanism)
+Static say_ScanPlanetVolcanism $= , %(EventClass_VolcanismTranslated)
 Static say_ScanPlanetTidallyLocked $= , Acoplamiento de mareas
 Static say_ScanPlanetRotation $= , Período de rotación %round(rotation,1,0.#) días
 Static say_ScanPlanetOrbitalPeriod $= , Período Orbital %hnum(period,HNumList) días
@@ -714,7 +714,7 @@ Static say_ScanPlanetTemperature $= , Temperatura %round(EventClass_nSurfaceTemp
 Static say_ScanPlanetPressure $= , Presión %roundnz(EventClass_nSurfacePressureEarth,1,0.#,4) Pascales
 Static say_ScanPlanetNoSurfacePressure $= , Sin presión superficial
 // gated on ScanPlanetMaterialInformationEnable
-Static say_ScanPlanetMaterials $= ", Materiales detectados %ExpandVars(EventClass_Materials_,\", \",0,1000,\"nameonly splitcaps\")"
+Static say_ScanPlanetMaterials $= ", Materiales detectados %ExpandVars(EventClass_Materials_,\", \",0,1000,\"nameonly splitcaps removecount\")"
 
 // If Nav sequence is in operation, gated on SpeechNavBeacon being Summary
 Static say_ScanNav $= %(navbeaconstarcount) Estrella%ifgt(navbeaconstarcount,'1','s') y %(navbeaconplanetcount) otros cuerpos. %(navbeaconextra)
@@ -1584,6 +1584,8 @@ If %(EventClass_FactionState) IsNotEmpty
 If (EventClass_Faction IsNotEmpty) And (SpeechControls NotPresent Or SpeechControls NotContains FSDFactionDisable;)
     Set speech += '%phrase("%expand(say_FSDJumpFaction)","<;>","{{{","}}}")'
 
+//Set speech = "Arrived " // tbd
+
 If SpeechControls IsPresent And SpeechControls Contains FirstJumpOnly; And EC_VisitCount >= 2
     Call speak(speech="%(speech)", Priority=High)
 Else 
@@ -1704,9 +1706,6 @@ Else
 
         If %(EventClass_Atmosphere) IsNotEmpty And %(EventClass_Atmosphere) $!= None
             If %(EventClass_Atmosphere) $!= "Earth Like"        // ignore earth like atmos, we have already done it in the planet class
-                Global OriginalAtmosphere = "%sc(EventClass_Atmosphere)"
-                If OriginalAtmosphere IsNotEmpty
-                    Global FinalAtmosphere = "%replacevar(OriginalAtmosphere,say_atmos)"
                 Set speech += %expand(say_ScanPlanetAtmosphere)
 
         Else If EventClass_BodyName NotContains "Belt Cluster" And %(EventClass_IsBeltCluster) == 0
@@ -1874,21 +1873,22 @@ END PROGRAM
 //*************************************************************
 PROGRAM SaySystemInfo
 
-// Print SaySysInfo %(ScanSystem) %(TriggerName)
+rem Print SaySysInfo %(ScanSystem) %(TriggerName)
 
-If ScanSystem NotPresent                                        // due to being driven direct by a key, instead of via FSD..
-    // Print Reset pos
+If ScanSystem NotPresent                                   // due to being driven direct by a key, instead of via FSD..
     Event THPOS
     Static ScanSystem = %(EC_StarSystem)
 
 If TriggerName $== onSayFinished                                // Trigger!
     Let delay = %random(10)*100+1000
     // print Delay Say is %(delay)
+    //Let delay = 100 // tbd
     Timer ScanDelay,%(delay)
     End 
 ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDisable;
     Scan EDSM  "%(ScanSystem)"
-    // pragma dumpvars S_*
+    
+    rem print Scan lookup %(ScanSystem) EDSM: %(S_EDSMLookup) Data %(S_EDSMNoData)
 
     Set speech = ""
 
@@ -1912,31 +1912,35 @@ ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDi
         Set excludestars = "%existsdefault(SpeechEDSMStarExclusion,\"\")"
 
         Loop %(S_Stars),S
+            
             Set prefix = S_Star_%(S)_
-            Set planets = "%indirect(\"%(prefix)Planets\")"
-            Set data = "%indirect(\"%(prefix)data\")"
+            //pragma dumpvars %(prefix)*
+
             Set type = "%indirect(\"%(prefix)type\")"
             Set ownname = "%indirect(\"%(prefix)assignedname\")"
-            Set starbodyname = "%indirect(\"%(prefix)bodyname\")"
-            Set value = "%indirect(\"%(prefix)value\")"
-
+            Set planets = "%indirect(\"%(prefix)Planets\")"
             Let exclude = 0
 
             If type $== barycentre
                 Set speech += %expand(say_edsmscanstarbarycentre)
-            ElseIf data IsTrue
-                Set starclass = "%indirect(\"%(prefix)startype\")"
-                Set startype = "%indirect(\"%(prefix)startypetext\")"
-                Set mass = "%indirect(\"%(prefix)stellarmass\")"
+            Else
+                Set data = "%indirect(\"%(prefix)data\")"
+            
+                If data IsTrue
+                    Set starclass = "%indirect(\"%(prefix)startype\")"
+                    Set startype = "%indirect(\"%(prefix)startypetext\")"
+                    Set mass = "%indirect(\"%(prefix)stellarmass\")"
+                    Set starbodyname = "%indirect(\"%(prefix)bodyname\")"
+                    Set value = "%indirect(\"%(prefix)value\")"
 
-                Rem we are going to look for A, ,A or just A
+                    Rem we are going to look for A, ,A or just A
 
-                If excludestars Contains %(starclass), Or excludestars Contains ,%(starclass) Or excludestars $== %(starclass)
-                    Let exclude = 1
-                Else 
-                    Set speech += %expand(say_edsmscanstarinfo)
-            Else 
-                Set speech += %expand(say_edsmscanstarnoinfo)
+                    If excludestars Contains %(starclass), Or excludestars Contains ,%(starclass) Or excludestars $== %(starclass)
+                        Let exclude = 1
+                    Else 
+                        Set speech += %expand(say_edsmscanstarinfo)
+                Else    
+                    Set speech += %expand(say_edsmscanstarnoinfo)
 
             If exclude IsFalse
                 Loop %(planets),P
@@ -1980,7 +1984,7 @@ Set pdata = "%indirect(\"%(prefix)data\")"
 
 If pdata IsTrue
     Set pname = "%indirect(\"%(prefix)bodyname\")"
-    // Print %(prefix) %(pname) %(starname)
+    rem Print %(prefix) %(pname) %(starname)
     Set isstar = "%indirect(\"%(prefix)isstar\")"
 
     Rem print %(prefix) %(pname) star %(isstar)
@@ -2012,7 +2016,7 @@ If pdata IsTrue
             Set matcount = "%indirect(\"%(prefix)MaterialsCount\")"
             If matcount > 0
                 Set speech += %expand(say_edsmscanbodyinfoMat)
-                Set speech += "%ExpandVars(\"%(prefix)Materials_\",\", \",1,1000,\"nameonly splitcaps\")"
+                Set speech += "%ExpandVars(\"%(prefix)Materials_\",\", \",1,1000,\"nameonly splitcaps removecount\")"
 
         Set speech += ". "
         Return %(speech)
@@ -2054,8 +2058,6 @@ If MenuName Contains ConfigureNPCEffects
         PersistentGlobal NPCVoiceEffects=%(Effects)
 
 If MenuName Contains ConfigureText
-    Pragma dumpvars TextVoice* 
-    Pragma dumpvars Speech*
     Set vn = %ExistsDefault(TextVoiceName,SpeechVoice,"Default")
     Set vv = %ExistsDefault(TextVoiceVolume,SpeechVolume,"60")
     Set vr = %ExistsDefault(TextVoiceRate,SpeechRate,"0")
@@ -2066,7 +2068,6 @@ If MenuName Contains ConfigureText
         PersistentGlobal TextVoiceVolume=%(Volume)
         PersistentGlobal TextVoiceRate=%(Rate)
         PersistentGlobal TextVoiceEffects=%(Effects)
-        Pragma dumpvars TextV*
 
 If MenuName Contains ConfigureSpeechFile
     Perform EditSpeechText
