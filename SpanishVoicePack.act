@@ -1,4 +1,4 @@
-ACTIONFILE V4
+﻿ACTIONFILE V4
 
 ENABLED True
 
@@ -368,8 +368,8 @@ Static say_install $= Ha instalado el paquete de voz para Elite Dangerous Discov
 Static say_shutdown $= Adiós comandante, hasta la próxima<;>Cerrando Elite Dangerous Discovery<;>Vaya con precaución Comandante<;>Me despido Comandante<;>Hasta otra Comandante<;>Cambio y cierro Comandante
 Static say_refresh $= 'Bienvenido comandante %existsdefault(RK_Class_Combat,"") %(Commander), %ifzero(LAST_OnFoot,"%ifnonzero(LAST_IsSRV,\"conduciendo\",\"pilotando\") una %ship(LAST_ShipType)") con %hnum(LED_Credits,HNumList) créditos'
 
-Static say_ApproachBody $= Aproximándose al cuerpo: %(FinalBodyName)<;>Cuerpo: %(FinalBodyName) a su alcance comandante<;>Nave acercándose al cuerpo: %(FinalBodyName), comandante
-Static say_ApproachBodyWarning $= Advertencia Comandante, Cuerpo con gravedad alta, %hnum(S_Body_gravity,HNumList) Ges, Nombre del Cuerpo: %(FinalBodyName), proceda con precaución<;>Advertencia! %(FinalBodyName) es de alta gravedad, %hnum(S_Body_gravity,HNumList) Ges, proceda con precaución
+Static say_ApproachBody $= Aproximándose al cuerpo: %ExistsDefault(FinalBodyName,' ')<;>Cuerpo: %ExistsDefault(FinalBodyName,' ') a su alcance comandante<;>Nave acercándose al cuerpo: %ExistsDefault(FinalBodyName,' '), comandante
+Static say_ApproachBodyWarning $= Advertencia Comandante, Cuerpo con gravedad alta, %hnum(S_Body_gravity,HNumList) Ges, Nombre del Cuerpo: %ExistsDefault(FinalBodyName,'desconocido'), proceda con precaución<;>Advertencia! %ExistsDefault(FinalBodyName,'cuerpo') es de alta gravedad, %hnum(S_Body_gravity,HNumList) Ges, proceda con precaución
 Static say_ApproachSettlement $= Acercándose a: %replace(EventClass_Name_Localised,'+','')<;>Asentamiento %replace(EventClass_Name_Localised,'+','') Aproximándose
 Static say_AfmuRepairs $= Módulo %(EventClass_ModuleLocalised) reparado al %round(EventClass_Health,0,0) porciento
 Static say_AppliedToSquadron $= Solicitud enviada a la Flota %(EventClass_Name)
@@ -437,7 +437,7 @@ Static say_DatalinkScan $= Enlace de datos analizado, %(EventClass_MessageLocali
 Static say_DataScanned $= Escaneado %sc(EventClass_Type)
 Static say_DiscoveryScan $= "{{{Sistema Escaneado, %(EventClass_Bodies)<;>La exploración del sistema revela %(EventClass_Bodies)}}}{{{ %ifeq(EventClass_Bodies,1,\"cuerpo\",\"cuerpos\") }}}{{{descubierto<;>detectado}}}{{{ Comandante<;>}}}"
 Static say_Died $= Aquí yacen los huesos del comandante %(Commander), muerto y enterrado<;> Su comandante muerto y enterrado %(Commander)<;>Enviaré a buscar al que lo hizo, comandante %(Commander)<;>Después de todo, la muerte es solo un síntoma de que hubo vida Comandante %(Commander)
-Static say_Docked $= "{{{Estacionado en %(EventClass_StationName), %ifnotempty(EventClass_StationType,\"%(EventClass_StationType) type\")}}}{{{. }}}{{{Esta es una estación con una economía basada en %(EventClass_Economy_Localised) <;>La economía es %(EventClass_Economy_Localised)}}}"
+Static say_Docked $= "{{{Estacionado en %(EventClass_StationName), %ifnotempty(EventClass_StationType,\"tipo %(EventClass_StationType)\")}}}{{{. }}}{{{Esta es una estación con una economía basada en %(EventClass_Economy_Localised) <;>La economía es %(EventClass_Economy_Localised)}}}"
 Static say_DockSRV $= Vehículo de Reconocimiento de Superficie a bordo Comandante<;>embarcado en la nave nodriza Comandante, prepárese para las operaciones de vuelo<;>Entrando en la nave nodriza
 
 Static dockingdeniedlist = No Space;Too Large;Hostile;Offences;Distance;Active Fighter;No Reason;Restricted Access
@@ -483,7 +483,7 @@ Static say_edsmscanstarnoinfo $= "Sin information sobre %(type) %star(ownname,sa
 Static say_edsmscanstarbarycentre $= "Baricentro %star(ownname,say_ss), %ifnonzero(planets,\" %(planets) planetas\"). "
 
 Static say_edsmscanbodystarinfo $= "%star(pname,say_ss), %sc(stype), masa %roundnz(mass,1,0.#,4) Soles. "
-Static say_edsmscanbodyinfo $= "%body(pname,EventStarSystem,say_ss), %(terraform)%(class)%ifnotcontains(landable,\"No \",\", Aterrizable\")"
+Static say_edsmscanbodyinfo $= "%body(pname,ScanSystem,say_ss), %(terraform)%(class)%ifnotcontains(landable,\"No \",\", Aterrizable\")"
 Static say_edsmscanbodyinfoAtmos $= "%ifnotempty(atmos,\", %(atmos)\")%ifnotcontains(atmos,\"atmosphere\",\" atmósfera \",\"\",\"\")"
 Static say_edsmscanbodyinfoVolcanism $= "%ifnotempty(volcanism, \", %(volcanism)\")"
 Static say_edsmscanbodyinfoMat $= ", Materiales detectados "
@@ -539,10 +539,10 @@ Static say_EscapeInterdictionNPC $= P N J %(EventClass_Interdictor_Localised)
 
 Static say_FuelScoop $= "%ifgt(EventClass_Scooped,0.1,'{{{Repostado<;>Rellenado}}}{{{ %round(EventClass_Scooped,1,0.#) toneladas, }}} %ifeq(EventShip_FuelCapacity,EventClass_Total,\"Tanque lleno\",\"dando %round(EventClass_Total,1,0.#) toneladas\")')"
 
-Static say_FSDJump $= "Llegada al sistema %star(EventClass_StarSystem,say_ss), %(visit) distancia del salto: %round(EventClass_JumpDist,1,0.#) años luz"
+Static say_FSDJump $= "Llegada al sistema %ExistsDefault(FinalStarSystem,', desconocido'), %(visit) distancia del salto: %round(EventClass_JumpDist,1,0.#) años luz"
 Static say_FSDJumpVisit $= Primera visita, ;Segunda visita, ;Tercera visita, ;Cuarta visita, ;Quinta visita, ;Sexta visita,;
 Static say_FSDJumpFuel $= , combustible consumido %round(EventClass_FuelUsed,1,0.#) toneladas
-Static say_FSDJumpFaction $= ", Sistema controlado por %rv(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,'none', '%ifnotempty(EventClass_FactionState,\"en un estado de %(EventClass_FactionState)\")')"
+Static say_FSDJumpFaction $= ", Sistema controlado por %rv(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,'none', '%ifnotempty(EventClass_FactionState,\"en un estado de %ExistsDefault(TranslatedFactionState,\', no se pudo obtener estado,\')\")')"
 Static say_FSDJumpFuelWarning $= , Alerta comandante, el nivel de combustible es bajo<;>, el nivel de combustible es bajo<;>, Advertencia, está bajando el combustible
 
 Static say_HullDamageCritical $= Alerta, Alerta, daño crítico, al %(health) %
@@ -575,7 +575,7 @@ Static say_Liftoff $= %iftrue(EventClass_PlayerControlled,'Despegue desde el pla
 Static say_LaunchSRV $= Lanzar un vehículo de reconocimiento de superficie con equipamiento %(EventClass_Loadout).
 Static say_LaunchFighter $= "{{{El caza está siendo lanzado Comandante<;>Desplegando caza}}}, %iftrue(EventClass_PlayerControlled,\" prepárese para tomar los controles\", \" miembro de la tripulación está tomando el mando\") "
 Static say_LaunchDrone $= Lanzando dron de %(EventClass_FriendlyType)<;>dron de %(EventClass_FriendlyType) lanzado
-Static say_LeaveBody $= {{{Saliendo de: <;>Abandonando: }}}%(FinalBodyName) , Comandante
+Static say_LeaveBody $= {{{Saliendo de: <;>Abandonando: }}}%ExistsDefault(FinalBodyName,'cuerpo') , Comandante
 
 Static say_LeftSquadron $= Dejó la Flota %(EventClass_Name)<;>Flota %(EventClass_Name) abandonada
 
@@ -659,9 +659,9 @@ Static say_ReceiveText $= %(EventClass_FromLocalised) says: %(EventClass_Message
 
 Static say_RenameSuitLoadout $= Confirmado Comandante, equipamiento %(EventClass_SuitName_Localised) renombrado como %rv(EventClass_LoadoutName,suit_loadoutrename)
 
-Static say_SAAScanComplete $= Análisis de exploración de superficies en %(FinalBodyName), completo comandante, usadas %(EventClass_ProbesUsed) sondas <;> %(FinalBodyName), Escaneo completo con %(EventClass_ProbesUsed) sondas usadas
+Static say_SAAScanComplete $= Análisis de exploración de superficies en %ExistsDefault(FinalBodyName,'cuerpo'), completo comandante, usadas %(EventClass_ProbesUsed) sondas <;> %ExistsDefault(FinalBodyName,' '), Escaneo completo con %(EventClass_ProbesUsed) sondas usadas
 
-Static say_SAASignalsFound $= Señales de superficie de tipo: %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' y '), encontradas en el cuerpo: %(FinalBodyName)
+Static say_SAASignalsFound $= Señales de superficie de tipo: %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' y '), encontradas en el cuerpo: %ExistsDefault(FinalBodyName,' ')
 
 Static say_SellExplorationData $= Vendido %(EventClass_SystemsCount) sistemas estelares por %hnum(EventClass_BaseValue,HNumList) créditos.
 Static say_SellExplorationDataBonus $= Y descubrió %(EventClass_DiscoveredCount) cuerpos por %hnum(EventClass_Bonus,HNumList)  créditos de bonificación.
@@ -753,7 +753,7 @@ Static say_ShipyardTransfer $+= , el coste será %hnum(EventClass_TransferPrice,
 
 Static say_SupercruiseEntry $= Motor de distorsión encendido<;>Supercrucero activado<;>Motor de distorsión conectado<;>Agárrate fuerte, Saltamos a Supercrucero
 Static say_SupercruiseExit $= {{{Saliendo de Supercrucero <;>Espacio normal comandante<;>Motor de distorsión desconectado, Impulso activado}}}
-Static say_SupercruiseExit $+= "%ifnotempty(EventClass_BodyType,\", Llegada a %replacevar(EventClass_BodyType,say_ss)\") %ifnotempty(EventClass_Body,FinalBodyName)"
+Static say_SupercruiseExit $+= "%ifnotempty(EventClass_BodyType,\", Llegada a %replacevar(EventClass_BodyType,say_ss)\") %ifnotempty(EventClass_Body,\"%ExistsDefault(FinalBodyName,'cuerpo')\")"
 
 Static say_shieldsdown $= Alerta, los escudos están desactivados, maniobras evasivas<;>Los escudos no funcionan<;>Peligro sin escudos, corra<;>Que no cunda el pánico, pero no tenemos escudos!
 Static say_shieldsup $= Escudos restaurados<;>Escudos de nuevo en línea comandante<;>Escudos operativos Comandante
@@ -816,6 +816,9 @@ Static say_surveyor_Earthlike $= "Es un planeta como la Tierra!, "
 Static say_surveyor_WaterWorld $= "Mundo acuático, "
 Static say_surveyor_AmmoniaWorld $= "Mundo de amonio, "
 
+Rem substition for dash only
+Static say_ds1 $= "-; guión "
+
 Rem subsitution patterns (ss1,ss2 etc) for faction and body name fields
 Static say_ssn0 $= "-; guión "
 Static say_ssn1 $= " I ; 1 "
@@ -854,6 +857,35 @@ Rem print %replacevar("Hello O7","say_tx")
 Rem print %replacevar("O7","say_tx")
 Rem print %replacevar("07","say_tx")
 Rem print %replacevar(" 907","say_tx")
+
+// States
+Static say_state01 $= "boom;auge"
+Static say_state02 $= "bust;quiebra"
+Static say_state03 $= "civilunrest;disturbios"
+Static say_state04 $= "civilwar;guerra civil"
+Static say_state05 $= "election;elecciones"
+Static say_state06 $= "expansion;expansión"
+Static say_state07 $= "famine;hambruna"
+Static say_state08 $= "investment;inversión"
+Static say_state09 $= "lockdown;bloqueo"
+Static say_state10 $= "outbreak;epidemia"
+Static say_state11 $= "retreat;retirada"
+Static say_state12 $= "war;guerra"
+Static say_state13 $= "civilliberty;libertad civil"
+Static say_state14 $= "pirateattack;ataque pirata"
+Static say_state15 $= "blight;plaga"
+Static say_state16 $= "drought;sequía"
+Static say_state17 $= "infrastructurefailure;fallo de infraestructura"
+Static say_state18 $= "naturaldisaster;desastre natural"
+Static say_state19 $= "publicholiday;día festivo"
+Static say_state20 $= "terrorism;ataque terrorista"
+Static say_state21 $= "coldwar;guerra fría"
+Static say_state22 $= "colonisation;colonización"
+Static say_state23 $= "historicevent;evento histórico"
+Static say_state24 $= "revolution;revolución"
+Static say_state25 $= "technologicalleap;avance tecnológico"
+Static say_state26 $= "tradewar;guerra comercial"
+Static say_state27 $= "exploited;explotado"
 
 // Crimes
 Static say_crime01 $= "onfoot_assault; Asalto a una persona"
@@ -901,24 +933,23 @@ Static say_crime42 $= "stationtamperingminor; Manipulación de una estación"
 
 // Atmospheres
 
-//Static say_atmos01 $= "Ammonia;Amoniaco"
-//Static say_atmos02 $= "Water;Agua"
-//Static say_atmos03 $= "Carbon dioxide; dióxido de carbono"
-//Static say_atmos04 $= "Methane;metano"
-//Static say_atmos05 $= "Helium;Helio"
-//Static say_atmos06 $= "Argon;Argón"
-//Static say_atmos07 $= "Neon;Neón"
-//Static say_atmos08 $= "Sulphur dioxide;Dióxido de sulfuro"
-//Static say_atmos09 $= "Nitrogen;Nitrógeno"
-//Static say_atmos10 $= "Silicate vapour;Vapor de silicato"
-//Static say_atmos11 $= "Metallic vapour;Vapor metálico"
-//Static say_atmos12 $= "Oxygen;Oxígeno"
-//Static say_atmos13 $= "Rich;Rica"
-//Static say_atmos14 $= "Thick;Densa"
-//Static say_atmos15 $= "Thin;Tenue"
-//Static say_atmos16 $= "Hot;Caliente"
-//Static say_atmos17 $= "Atmosphere;Atmósfera"
-
+// Static say_atmos01 $= "Ammonia;Amoniaco"
+// Static say_atmos02 $= "Water;Agua"
+// Static say_atmos03 $= "Carbon dioxide; dióxido de carbono"
+// Static say_atmos04 $= "Methane;metano"
+// Static say_atmos05 $= "Helium;Helio"
+// Static say_atmos06 $= "Argon;Argón"
+// Static say_atmos07 $= "Neon;Neón"
+// Static say_atmos08 $= "Sulphur dioxide;Dióxido de sulfuro"
+// Static say_atmos09 $= "Nitrogen;Nitrógeno"
+// Static say_atmos10 $= "Silicate vapour;Vapor de silicato"
+// Static say_atmos11 $= "Metallic vapour;Vapor metálico"
+// Static say_atmos12 $= "Oxygen;Oxígeno"
+// Static say_atmos13 $= "Rich;Rica"
+// Static say_atmos14 $= "Thick;Densa"
+// Static say_atmos15 $= "Thin;Tenue"
+// Static say_atmos16 $= "Hot;Caliente"
+// Static say_atmos17 $= "Atmosphere;Atmósfera"
 
 // Solar System
 
@@ -991,7 +1022,7 @@ If SpeechControls NotPresent Or SpeechControls NotContains SSMLDisable;
     Static say_tx_star35 = r;\b(Laksak)\b;<phoneme alphabet='ipa' ph = 'ˈlæks.æk'>Laksak</phoneme>
     Static say_tx_star36 = r;\b(Leesti)\b;<phoneme alphabet='ipa' ph = 'ˈliːstiː'>Leesti</phoneme>
     Static say_tx_star37 = r;\b(Leucos)\b;<phoneme alphabet='ipa' ph = 'ˈluːkɒs'>Leucos</phoneme>
-    Static say_tx_star38 = r;\b(Luyten's Star)\b;<phoneme alphabet='ipa' ph = 'ˈlaʊ.təns'>Luyten's</phoneme><phoneme alphabet='ipa' ph = 'stɑː'>Star</phoneme>
+    Static say_tx_star38 = r;\b(Luyten's Star)\b;<phoneme alphabet='ipa' ph = 'ˈloʊ.təns'>Luyten's</phoneme><phoneme alphabet='ipa' ph = 'stɑːr'>Star</phoneme>
     Static say_tx_star39 = r;\b(Maia)\b;<phoneme alphabet='ipa' ph = 'ˈmaɪ.ə'>Maia</phoneme>
     Static say_tx_star40 = r;\b(Mata)\b;<phoneme alphabet='ipa' ph = 'ˈmɑː.tʌ'>Mata</phoneme>
     Static say_tx_star41 = r;\b(Merope)\b;<phoneme alphabet='ipa' ph = 'ˈmɛrəpiː'>Merope</phoneme>
@@ -1531,6 +1562,11 @@ Event FROM %(EventJID) INFO
 If EC_JID == 0
     Set EC_VisitCount = 2
 
+If %(EventClass_StarSystem) Contains " Star" Or %(EventClass_StarSystem) Contains " Planet"
+    Global FinalStarSystem = %star(EventClass_StarSystem,say_ds)
+Else
+    Global FinalStarSystem = %star(EventClass_StarSystem,say_ss)
+
 Set visit = %expand(say_FSDJumpVisit)
 Set visit = %wordof(visit, EC_VisitCount)
 
@@ -1542,6 +1578,9 @@ If SpeechControls NotPresent Or SpeechControls NotContains FuelLevelDisable;
     If EventClass_FuelUsed >= 0.1
         Set speech += '%phrase("%expand(say_FSDJumpFuel)","<;>","{{{","}}}")'
 
+If %(EventClass_FactionState) IsNotEmpty
+    Global TranslatedFactionState = "%replacevar(EventClass_FactionState,say_state)"
+
 If (EventClass_Faction IsNotEmpty) And (SpeechControls NotPresent Or SpeechControls NotContains FSDFactionDisable;)
     Set speech += '%phrase("%expand(say_FSDJumpFaction)","<;>","{{{","}}}")'
 
@@ -1552,6 +1591,9 @@ Else
     Static ScanSystem = %(EventStarSystem)
 
 Static FSSAllBodiesFoundAllowed = 1                             // allow FSSAllbodies found
+
+DeleteVariable FinalStarSystem
+DeleteVariable TranslatedFactionState
 
 END PROGRAM
 
@@ -1834,7 +1876,8 @@ PROGRAM SaySystemInfo
 
 // Print SaySysInfo %(ScanSystem) %(TriggerName)
 
-If EventStarSystem NotPresent                                   // due to being driven direct by a key, instead of via FSD..
+If ScanSystem NotPresent                                        // due to being driven direct by a key, instead of via FSD..
+    // Print Reset pos
     Event THPOS
     Static ScanSystem = %(EC_StarSystem)
 
@@ -1865,7 +1908,7 @@ ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDi
             Let totalplanets = %(totalplanets)+%(planets)
 
         Set speech += '%phrase("%expand(say_edsmscanstarsplanets)","<;>","{{{","}}}")'
-    Else 
+    Else
         Set excludestars = "%existsdefault(SpeechEDSMStarExclusion,\"\")"
 
         Loop %(S_Stars),S
@@ -2407,8 +2450,8 @@ Else If %(EventClass_FDStationType) MatchSemicolon %(starports)
         Set speech += " %(say_DockingGranted5) %wordof(say_DockingGrantedD5,lp)"
 
     Set v = say_DockingGrantedGRN
-    set speech += '%phrase("%indirect(v)","<;>","{{{","}}}")'
-	
+    Set speech += '%phrase("%indirect(v)","<;>","{{{","}}}")'
+
 Else 
     Set v = say_DockingGranted
     Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
