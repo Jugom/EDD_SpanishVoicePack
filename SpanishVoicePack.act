@@ -1583,7 +1583,7 @@ If %(EventClass_FactionState) IsNotEmpty
 If (EventClass_Faction IsNotEmpty) And (SpeechControls NotPresent Or SpeechControls NotContains FSDFactionDisable;)
     Set speech += '%phrase("%expand(say_FSDJumpFaction)","<;>","{{{","}}}")'
 
-Set speech = "Arrived " // tbd
+rem Set speech = "Arrived " // tbd
 
 If SpeechControls IsPresent And SpeechControls Contains FirstJumpOnly; And EC_VisitCount >= 2
     Call speak(speech="%(speech)", Priority=High)
@@ -1877,7 +1877,7 @@ If ScanSystem NotPresent                                   // due to being drive
 If TriggerName $== onSayFinished                                // Trigger!
     Let delay = %random(10)*100+1000
     rem print Delay Say is %(delay)
-    Let delay = 100 // tbd
+    rem Let delay = 100 // tbd
     Timer ScanDelay,%(delay)
     End 
 ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDisable;
