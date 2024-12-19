@@ -702,7 +702,7 @@ Static say_ScanPlanetLandable $= , Aterrizable
 Static say_ScanPlanetAtmosphere $= , %sc(EventClass_Atmosphere) %ifnotcontains(EventClass_Atmosphere, ' atmósfera','')
 Static say_ScanPlanetNoAtmosphere $= , Sin atmósfera
 // gated on ScanPlanetExtendedInformationEnable
-Static say_ScanPlanetVolcanism $= , %(EventClass_VolcanismTranslated)
+Static say_ScanPlanetVolcanism $= , %(EventClass_Volcanism)
 Static say_ScanPlanetTidallyLocked $= , Acoplamiento de mareas
 Static say_ScanPlanetRotation $= , Período de rotación %round(rotation,1,0.#) días
 Static say_ScanPlanetOrbitalPeriod $= , Período Orbital %hnum(period,HNumList) días
