@@ -375,7 +375,7 @@ Static say_AfmuRepairs $= Módulo %(EventClass_ModuleLocalised) reparado al %rou
 Static say_AppliedToSquadron $= Solicitud enviada a la Flota %(EventClass_Name)
 Static say_AsteroidCracked $= Asteroide %(EventClass_Body) agrietado Comandante<;>Bum!<;>%(EventClass_Body) agrietado Comandante
 
-Static say_Bounty $= "Recompensa %ifnotempty(EventClass_TargetLocalised, 'por %(EventClass_TargetLocalised) ')%ifnotempty( EventClass_PilotName_Localised, ', Pilot %(EventClass_PilotName_Localised), ') adquirida por %hnum(EventClass_TotalReward,HNumList) créditos, la facción era %rv(EventClass_VictimFactionLocalised,say_ss)"
+Static say_Bounty $= "Recompensa %ifnotempty(EventClass_TargetLocalised, 'por %(EventClass_TargetLocalised) ')%ifnotempty( EventClass_PilotName_Localised, ', Piloto %(EventClass_PilotName_Localised), ') adquirida por %hnum(EventClass_TotalReward,HNumList) créditos, la facción era %rv(EventClass_VictimFactionLocalised,say_ss)"
 Static say_BuyAmmo $= Munición comprada, %(EventClass_Cost) créditos<;>El rearme ha costado %(EventClass_Cost) créditos
 Static say_BuyExplorationData $= Comprado mapa del sistema estelar %star(EventClass_System,say_ss) por %(EventClass_Cost) créditos
 Static say_BuyDrones $= Comprado %(EventClass_Count) %(EventClass_Type) por un total de %(EventClass_TotalCost) créditos
@@ -426,10 +426,10 @@ Static say_DeleteSuitLoadout $= %(EventClass_SuitName_Localised) loadout %rv(Eve
 
 Static say_DropItems $= %(EventClass_Resource_Name_Localised) ha sido {{{abandonado<;>desechado<;>descartado}}}
 
-Static say_Disembark $= Disembarked %iftrue(EventClass_Taxi,'desde Taxi Apex ','%iftrue(EventClass_SRV,"desde el VRS","desde la nave")') al 
+Static say_Disembark $= Desembarcando %iftrue(EventClass_Taxi,'desde Taxi Apex ','%iftrue(EventClass_SRV,"desde el VRS","desde la nave")') al 
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanetaryPort"," Puerto planetario: %(EventStationName)")
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootStarPort"," Puerto estelar: %(EventStationName)")
-Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanet"," Planeta: %body(EventClass_Body,EventStarSystem,say_ss)")
+Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanet"," Planeta: %replacevar(\"%body(EventClass_Body,EventStarSystem,say_ss)\",say_sol)")
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootFleetCarrier"," Portanaves: %(EventStationName)")
 
 Static say_DatalinkVoucher $= {{{Enlace de datos escaneado<;>Enlace de datos descargado}}}{{{, el vale recibido tiene un valor de:<;>, valor de:}}} %hnum(EventClass_Reward,HNumList) créditos de parte de %rv(EventClass_PayeeFaction,say_ss)
@@ -959,10 +959,27 @@ Static say_sol03 $= "Earth;Tierra"
 Static say_sol031 $= "Moon;Luna"
 Static say_sol04 $= "Mars;Marte"
 Static say_sol05 $= "Jupiter;Júpiter"
+// Static say_sol051 $= "Europa;Europa"
+Static say_sol052 $= "Callisto;Calisto"
+Static say_sol053 $= "Io;Ío"
+Static say_sol054 $= "Ganymede;Ganímedes"
 Static say_sol06 $= "Saturn;Saturno"
+Static say_sol061 $= "Tethys;Tetis"
+Static say_sol062 $= "Rhea;Rea"
+Static say_sol063 $= "Enceladus;Encélado"
+// Static say_sol064 $= "Dione;Dione"
+Static say_sol065 $= "Titan;Titán"
+Static say_sol066 $= "Iapetus;Jápeto"
 Static say_sol07 $= "Uranus;Urano"
+// Static say_sol071 $= "Umbriel;Umbriel"
+// Static say_sol072 $= "Titania;Titania"
+// Static say_sol073 $= "Ariel;Ariel"
+Static say_sol074 $= "Oberon;Oberón"
 Static say_sol08 $= "Neptune;Neptuno"
-Static say_sol09 $= "Pluto;Plutón"
+Static say_sol081 $= "Triton;Tritón"
+Static say_sol10 $= "Pluto;Plutón"
+Static say_sol11 $= "Charon;Caronte"
+Static say_sol18 $= "Persephone;Perséfone"
 
 // Phonemes
 
@@ -1583,7 +1600,7 @@ If %(EventClass_FactionState) IsNotEmpty
 If (EventClass_Faction IsNotEmpty) And (SpeechControls NotPresent Or SpeechControls NotContains FSDFactionDisable;)
     Set speech += '%phrase("%expand(say_FSDJumpFaction)","<;>","{{{","}}}")'
 
-rem Set speech = "Arrived " // tbd
+Rem Set speech = "Arrived "                                     // tbd
 
 If SpeechControls IsPresent And SpeechControls Contains FirstJumpOnly; And EC_VisitCount >= 2
     Call speak(speech="%(speech)", Priority=High)
@@ -1703,7 +1720,7 @@ Else
             If %(EventClass_IsLandable) IsTrue
                 Set speech += %expand(say_ScanPlanetLandable)
 
-        If %(EventClass_Atmosphere) IsNotEmpty And %(EventClass_Atmosphere) $!= None And %(EventClass_Atmosphere) NotContains "Earth" 
+        If %(EventClass_Atmosphere) IsNotEmpty And %(EventClass_Atmosphere) $!= None And %(EventClass_Atmosphere) NotContains Earth
             Set speech += %expand(say_ScanPlanetAtmosphere)
 
     If SpeechControls IsPresent And SpeechControls Contains ScanPlanetExtendedInformationEnable;
@@ -1868,29 +1885,29 @@ END PROGRAM
 //*************************************************************
 PROGRAM SaySystemInfo
 
-rem Print SaySysInfo %(ScanSystem) %(TriggerName)
+Rem Print SaySysInfo %(ScanSystem) %(TriggerName)
 
-If ScanSystem NotPresent                                   // due to being driven direct by a key, instead of via FSD..
+If ScanSystem NotPresent                                        // due to being driven direct by a key, instead of via FSD..
     Event THPOS
     Static ScanSystem = %(EC_StarSystem)
 
 If TriggerName $== onSayFinished                                // Trigger!
     Let delay = %random(10)*100+1000
-    rem print Delay Say is %(delay)
-    rem Let delay = 100 // tbd
+    Rem print Delay Say is %(delay)
+    Rem Let delay = 100                                         // tbd
     Timer ScanDelay,%(delay)
     End 
 ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDisable;
     Scan EDSM SPANSH "%(ScanSystem)"
-    
-    set foundedsm = 1
-    set foundspansh = 1
+
+    Set foundedsm = 1
+    Set foundspansh = 1
     If S_EDSMLookup IsFalse Or S_EDSMNoData IsTrue
-        set foundedsm = 0
+        Set foundedsm = 0
     If S_SpanshLookup IsFalse Or S_SpanshNoData IsTrue
-        set foundspansh = 0
-        
-    rem print Scan lookup %(ScanSystem) EDSM: %(S_EDSMLookup) Data %(S_EDSMNoData) =%(foundedsm) Spansh: %(S_SpanshLookup) Data %(S_SpanshNoData) = %(foundspansh)
+        Set foundspansh = 0
+
+    Rem print Scan lookup %(ScanSystem) EDSM: %(S_EDSMLookup) Data %(S_EDSMNoData) =%(foundedsm) Spansh: %(S_SpanshLookup) Data %(S_SpanshNoData) = %(foundspansh)
 
     Set speech = ""
     Set cr = %ReplaceEscapeChar("\r\n")
@@ -1900,7 +1917,7 @@ ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDi
     ElseIf SpeechControls IsPresent And SpeechControls Contains EDSMSummaryEnable;
         Let totalstars = 0
         Let totalplanets = 0
-        
+
         Loop %(S_Stars),N
             Set prefix = S_Star_%(N)_
             Set type = "%indirect(\"%(prefix)type\")"
@@ -1915,20 +1932,20 @@ ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDi
         Set excludestars = "%existsdefault(SpeechEDSMStarExclusion,\"\")"
 
         Loop %(S_Stars),S
-            rem pragma dumpvars S_Star_%(S)_*
+            Rem pragma dumpvars S_Star_%(S)_*
             Set prefix = S_Star_%(S)_
-            //pragma dumpvars %(prefix)*
+            // pragma dumpvars %(prefix)*
 
             Set type = "%indirect(\"%(prefix)type\")"
             Set ownname = "%indirect(\"%(prefix)assignedname\")"
             Set planets = "%indirect(\"%(prefix)Planets\")"
             Let excludeplanets = 0
-            
+
             If type $== barycentre
                 Set speech += %expand(say_edsmscanstarbarycentre)
-            Else
+            Else 
                 Set data = "%indirect(\"%(prefix)data\")"
-            
+
                 If data IsTrue
                     Set starclass = "%indirect(\"%(prefix)startype\")"
                     Set startype = "%indirect(\"%(prefix)startypetext\")"
@@ -1942,15 +1959,15 @@ ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDi
                         Let excludeplanets = 1
                     Else 
                         Set speech += %expand(say_edsmscanstarinfo)
-                Else    
+                Else 
                     Set speech += %expand(say_edsmscanstarnoinfo)
 
                 Set speech += %(cr)
 
             If excludeplanets IsFalse
                 Loop %(planets),P
-                    rem pragma dumpvars S_Planet_%(S)_%(P)_*
-                    
+                    Rem pragma dumpvars S_Planet_%(S)_%(P)_*
+
                     Set prefix = S_Planet_%(S)_%(P)_
                     Call saySystemInfoBody(prefix="%(prefix)",starname="%(starbodyname)",S_*$=1)
                     Set speech += %(ReturnValue)
@@ -1975,7 +1992,7 @@ ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDi
                                     Set speech += %(cr)
 
             Set speech += %(cr)
-            
+
     If speech IsNotEmpty                                        // Because we may have decided not to say anything!
         Set speech = "%replacevar(speech,\"say_tx\")"
         Say %(speech),Priority=Low,Literal=1
@@ -1996,7 +2013,7 @@ Set pdata = "%indirect(\"%(prefix)data\")"
 
 If pdata IsTrue
     Set pname = "%indirect(\"%(prefix)bodyname\")"
-    rem Print %(prefix) %(pname) %(starname)
+    Rem Print %(prefix) %(pname) %(starname)
     Set isstar = "%indirect(\"%(prefix)isstar\")"
 
     Rem print %(prefix) %(pname) star %(isstar)
@@ -2015,21 +2032,21 @@ If pdata IsTrue
         Set pname = %replace(pname,starname,'')
 
         Set speech = %expand(say_edsmscanbodyinfo)
-        
-        rem some of this is defensive.  atmos is supposed to be none or a type, but previous versions may not have atmosphere on the end
-        
+
+        Rem some of this is defensive.  atmos is supposed to be none or a type, but previous versions may not have atmosphere on the end
+
         If SpeechControls IsPresent And SpeechControls Contains EDSMAtmosphereEnable;
             Set atmos = "%indirect(\"%(prefix)atmosphere\")"
-            rem print %(pname) atmos=%(atmos)
-            if atmos IsNotEmpty And atmos NotContains "none" And atmos NotContains "No atmosphere"
-                if atmos NotContains "atmosphere"
+            Rem print %(pname) atmos=%(atmos)
+            If atmos IsNotEmpty And atmos NotContains none And atmos NotContains "No atmosphere"
+                If atmos NotContains atmosphere
                     Set atmos += " atmosphere"
                 Set speech += %expand(say_edsmscanbodyinfoAtmos) 
 
         If SpeechControls IsPresent And SpeechControls Contains EDSMVolcanismEnable;
             Set volcanism = "%indirect(\"%(prefix)volcanism\")"
-            rem print %(pname) volcanism=%(volcanism)
-            if volcanism IsNotEmpty And volcanism Notcontains "No vol"
+            Rem print %(pname) volcanism=%(volcanism)
+            If volcanism IsNotEmpty And volcanism NotContains "No vol"
                 Set speech += %expand(say_edsmscanbodyinfoVolcanism)
 
         If SpeechControls IsPresent And SpeechControls Contains EDSMMaterialsEnable;
