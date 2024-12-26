@@ -5,7 +5,7 @@ ENABLED True
 INSTALL LongDescription="Esta es la versión 23 del paquete de voz para EDD, para la versión 18.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
 INSTALL ShortDescription="Archivo de voz para ED"
 INSTALL Version=23.1.0.0
-INSTALL MinEDVersion=18.1.0.0
+INSTALL MinEDVersion=18.1.6.0
 INSTALL Location=Actions
 INSTALL DisableOther1=SpanishVoicePackV1
 INSTALL DisableOther2=SpanishVoicePackV2
@@ -375,7 +375,7 @@ Static say_AfmuRepairs $= Módulo %(EventClass_ModuleLocalised) reparado al %rou
 Static say_AppliedToSquadron $= Solicitud enviada a la Flota %(EventClass_Name)
 Static say_AsteroidCracked $= Asteroide %(EventClass_Body) agrietado Comandante<;>Bum!<;>%(EventClass_Body) agrietado Comandante
 
-Static say_Bounty $= "Recompensa %ifnotempty(EventClass_TargetLocalised, 'por %(EventClass_TargetLocalised) ')%ifnotempty( EventClass_PilotName_Localised, ', Piloto %(EventClass_PilotName_Localised), ') adquirida por %hnum(EventClass_TotalReward,HNumList) créditos, la facción era %rv(EventClass_VictimFactionLocalised,say_ss)"
+Static say_Bounty $= "Recompensa %ifnotempty(EventClass_TargetLocalised, 'por %(EventClass_TargetLocalised) ')%ifnotempty( EventClass_PilotName_Localised, ', Piloto %(EventClass_PilotName_Localised), ') adquirida por %hnum(EventClass_TotalReward,HNumList) créditos, la facción es %rv(EventClass_VictimFactionLocalised,say_ss)"
 Static say_BuyAmmo $= Munición comprada, %(EventClass_Cost) créditos<;>El rearme ha costado %(EventClass_Cost) créditos
 Static say_BuyExplorationData $= Comprado mapa del sistema estelar %star(EventClass_System,say_ss) por %(EventClass_Cost) créditos
 Static say_BuyDrones $= Comprado %(EventClass_Count) %(EventClass_Type) por un total de %(EventClass_TotalCost) créditos
@@ -694,15 +694,17 @@ Static say_ScanStarRadius $= , Radio %roundnz(radius,2,0.#,4) soles
 Static say_ScanStarAge $= , antigüedad %hnum(%eval('%(EventClass_nAge)*1000000.0'),HNumList) años
 
 // always said on planet
-Static say_ScanPlanet $= "Escaneado: %replacevar(\"%body(EventClass_BodyName,EventStarSystem,say_ss)\",say_sol). %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rv(EventClass_PlanetTypeText,say_ss)\")"
+Static say_ScanPlanet $= "Escaneado: %replacevar(\"%body(EventClass_BodyName,EventStarSystem,say_ss)\",say_sol)."
+Static say_ScanPlanet $+= "%ifnotempty(EventClass_TerraformState, \", %rs(EventClass_TerraformState, say_ss)\")"
+Static say_ScanPlanet $+= "%ifnotempty(EventClass_PlanetClass,\", %rv(EventClass_PlanetTypeText,say_ss)\")"
 // gated on ScanPlanetBasicInformationDisable
 Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
 Static say_ScanPlanetDistance $= , Distancia %hnum(EventClass_DistanceFromArrivalLS,HNumList) segundos luz
 Static say_ScanPlanetLandable $= , Aterrizable
-Static say_ScanPlanetAtmosphere $= , %sc(EventClass_Atmosphere) %ifnotcontains(EventClass_Atmosphere, ' atmósfera','')
+Static say_ScanPlanetAtmosphere $= , %sc(EventClass_AtmosphereTranslated) %ifnotcontains(EventClass_Atmosphere, ' atmósfera','')
 Static say_ScanPlanetNoAtmosphere $= , Sin atmósfera
 // gated on ScanPlanetExtendedInformationEnable
-Static say_ScanPlanetVolcanism $= , %(EventClass_Volcanism)
+Static say_ScanPlanetVolcanism $= , %(EventClass_VolcanismTranslated)
 Static say_ScanPlanetTidallyLocked $= , Acoplamiento de mareas
 Static say_ScanPlanetRotation $= , Período de rotación %round(rotation,1,0.#) días
 Static say_ScanPlanetOrbitalPeriod $= , Período Orbital %hnum(period,HNumList) días
@@ -835,6 +837,8 @@ Static say_ssn11 $= "clase V;clase 5"
 Static say_ssn12 $= "planet;planeta"
 Static say_ssn13 $= "star;estrella"
 Static say_ssn14 $= "station;estación"
+Static say_ssn15 $= "terraforming; en terrafomación"
+Static say_ssn15 $= "terraformed;terraformado"
 
 Rem say subsitution patterns, applied after the phrase has been made, are called say_txN in the same form as above.
 
@@ -930,26 +934,6 @@ Static say_crime39 $= "piracy; Piratería"
 Static say_crime40 $= "recklessWeaponsDischarge; Disparo negligente de armas"
 Static say_crime41 $= "shuttleDestruction; Destrucción de lanzadera de Apex"
 Static say_crime42 $= "stationtamperingminor; Manipulación de una estación"
-
-// Atmospheres
-
-// Static say_atmos01 $= "Ammonia;Amoniaco"
-// Static say_atmos02 $= "Water;Agua"
-// Static say_atmos03 $= "Carbon dioxide; dióxido de carbono"
-// Static say_atmos04 $= "Methane;metano"
-// Static say_atmos05 $= "Helium;Helio"
-// Static say_atmos06 $= "Argon;Argón"
-// Static say_atmos07 $= "Neon;Neón"
-// Static say_atmos08 $= "Sulphur dioxide;Dióxido de sulfuro"
-// Static say_atmos09 $= "Nitrogen;Nitrógeno"
-// Static say_atmos10 $= "Silicate vapour;Vapor de silicato"
-// Static say_atmos11 $= "Metallic vapour;Vapor metálico"
-// Static say_atmos12 $= "Oxygen;Oxígeno"
-// Static say_atmos13 $= "Rich;Rica"
-// Static say_atmos14 $= "Thick;Densa"
-// Static say_atmos15 $= "Thin;Tenue"
-// Static say_atmos16 $= "Hot;Caliente"
-// Static say_atmos17 $= "Atmosphere;Atmósfera"
 
 // Solar System
 
@@ -1600,7 +1584,7 @@ If %(EventClass_FactionState) IsNotEmpty
 If (EventClass_Faction IsNotEmpty) And (SpeechControls NotPresent Or SpeechControls NotContains FSDFactionDisable;)
     Set speech += '%phrase("%expand(say_FSDJumpFaction)","<;>","{{{","}}}")'
 
-Rem Set speech = "Arrived "                                     // tbd
+Rem Set speech = "Arrived "                                     // tbd just here to cut short the debugging of edsm output
 
 If SpeechControls IsPresent And SpeechControls Contains FirstJumpOnly; And EC_VisitCount >= 2
     Call speak(speech="%(speech)", Priority=High)
@@ -1899,6 +1883,7 @@ If TriggerName $== onSayFinished                                // Trigger!
     End 
 ElseIf SpeechControls NotPresent Or SpeechControls NotContains EDSMInformationDisable;
     Scan EDSM SPANSH "%(ScanSystem)"
+    Rem Scan EDSM "%(ScanSystem)"
 
     Set foundedsm = 1
     Set foundspansh = 1
@@ -2228,8 +2213,8 @@ If MenuName Contains ConfigureVerbosity
     Set dvar8l = "CBDF,CheckBox,\"No Descubierto\",%(col2),+0,%(colw),20,\"Solo reportar escaneos no descubiertos\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
     Set dvar8m = "CBMF,CheckBox,\"No Mapeado\",%(col3),+0,%(colw),20,\"Solo reportar escaneos no mapeados\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
 
-    Set dvar9a = "L3,Label,\"EDSM\",10,%(lsm),80,20,\"\""
-    Set dvar9b = "CBED,CheckBox,\"Desactivar EDSM info\",%(col1),+0,%(colw),20,\"Desactiva toda la búsqueda de información del sistema en EDSM\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
+    Set dvar9a = "L3,Label,\"EDSM/SPANSH\",10,%(lsm),80,20,\"\""
+    Set dvar9b = "CBED,CheckBox,\"Desactivar EDSM/SPANSH info\",%(col1),+0,%(colw),20,\"Desactiva toda la búsqueda de información del sistema en EDSM y SPANSH\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
     Set dvar9c = "CBES,CheckBox,\"Resumen breve\",%(col2),+0,%(colw),20,\"Produce un resumen en lugar de la información completa\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
     Set dvar9d = "CBEM,CheckBox,\"Información de lunas\",%(col3),+0,%(colw),20,\"Da la información de luna\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
     Set dvar9e = "CBESM,CheckBox,\"Información Sub-lunas\",%(col1),%(ls),%(colw),20,\"Da la información de la sub-luna\",%IsPresent(SpeechControls,\"EDSMSubMoonsEnable;\",0)"
