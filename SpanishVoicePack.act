@@ -502,6 +502,7 @@ Static say_friendsub2 $= Requested;Solicita ser Agregado como Amigo
 Static say_friendsub3 $= Online;Está en línea
 Static say_friendsub4 $= Offline;Se ha Desconectado
 Static say_friendsub5 $= Declined;Ha Declinado su solicitud de amistad
+Static say_friendsub6 $= Lost;Te ha removido de su lista de amigos
 
 Static say_FighterRebuilt $= Caza listo para la acción<;>Nuevo caza preparado Comandante<;>Lanzar Caza cuando esté listo<;>
 Static say_FighterDestroyed $= Alerta Comandante, el caza ha sido destruido<;>El caza ha sido destruido<;>Caza destruido
